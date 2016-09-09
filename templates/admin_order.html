@@ -1,0 +1,31 @@
+<div>
+	<div class="adminBlockBorder">
+    	<div class="blockBottomLine">
+        	訂單列表
+        </div>
+        <table class="tableStyle previewHot tableOrderStyle">
+            <tbody>
+                <tr>
+                    <th>狀態</th>
+                    <th>序號</th>
+                    <th>提交日期時間</th>
+                    <th>姓名</th>
+                    <th>email</th>
+                    <th>總計</th>
+                    <th>處理</th>
+                </tr>
+                <% foreach $order_data as $order %>
+                    <tr>
+                        <td><% if $order._checkout %>已結帳<% /if %></td>
+                        <td><% $order.id %></td>
+                        <td><% $order.datetime %></td>
+                        <td><% $order.name %></td>
+                        <td><% $order.email %></td>
+                        <td><% $order.total %></td>
+                        <td><a href="admin.php?act=order&amp;op=info&amp;id=<% $order.id %>">細節</a></td>
+                    </tr>
+                <% /foreach %>
+            </tbody>
+		</table>
+    </div>
+</div>

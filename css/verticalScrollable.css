@@ -1,0 +1,90 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* root element for scrollable */
+.vertical {  
+	
+	/* required settings */
+	position:relative;
+	overflow:hidden;	
+
+	/* vertical scrollers have typically larger height than width */	
+	height: 924px;	 
+	width: 850px;
+}
+
+/* root element for scrollable items */
+.items {	
+	position:absolute;
+	
+	/* this time we have very large space for height */	
+	height:20000em;	
+	margin: 0px;
+}
+
+/* single scrollable item */
+.item {
+	margin:10px 0;
+	padding:15px;
+	font-size:12px;
+	height:200px;
+	width: 820px;
+	border-bottom: 1px dashed #CFFF9B;
+}
+
+.item:hover {
+	background-color: #F9F9F9;
+}
+
+/* elements inside single item */
+.item img {
+	/*float:left;*/
+	/*margin-right:20px;*/
+	height:150px;
+	width:200px;
+}
+
+.item h3 {
+	margin:0 0 5px 0;
+	font-size:16px;
+	color:#456;
+	font-weight:normal;
+}
+
+/* the action buttons above the scrollable */
+#actions .fixedBar{
+	width: 40px;
+	padding: 5px;
+	left: 90%;
+	top: 40%;
+	border: 1px dashed #CCC;
+	background-color: #FAFAFA;
+	position: fixed;
+}
+
+#actions .widthBar {
+	width:840px;
+	margin:0px 0 10px 0;
+	padding: 5px;
+	border: 1px solid #CCC;
+	background-color: #FAFAFA;
+}
+
+#actions a {
+	font-size:11px;		
+	cursor:pointer;
+	color:#666;
+}
+
+#actions a:hover {
+	text-decoration:underline;
+	color:#000;
+}
+
+.disabled {
+	visibility:hidden;		
+}
+
+#actions .widthBar .next {
+	float:right;
+}	

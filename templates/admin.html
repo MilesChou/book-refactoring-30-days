@@ -1,0 +1,158 @@
+	
+    <div class="adminClassBar">
+    	<div class="classBar">
+			<div class="blockBottomLine">
+				管理功能
+			</div>
+			<ul>
+				<li><a href="admin.php?act=shop&amp;op=view">商品管理</a></li>
+				<li><a href="admin.php?act=order&amp;op=view">訂單管理</a></li>
+			</ul>
+		</div>
+	<% if isset($all_category) %>
+		<div class="classBar">
+			<div class="blockBottomLine">
+				分類
+			</div>
+			<ul>
+				<% foreach $all_category as $category %>
+					<li><a href="admin.php?act=shop&amp;op=query&amp;query=category&amp;opera=eq&amp;val=<% $category.id %>"><% $category.title %></a></li>
+				<% /foreach %>
+			</ul>
+		</div>
+   
+	<% /if %>
+     </div>
+    <div class="adminContent">
+	<div class="listBar">
+		<% if isset($admin_page) %>
+			<% include file=$admin_page %>
+		<% else %>
+        	<div class="adminBlockBorder">
+            	<div class="blockBottomLine">
+                	統計功能
+                </div>
+                <table class="previewHot tableStyle">
+	                	<tr>
+	                    	<th class="titleWidth">總結帳金額</td>
+	                        <td class="countWidth"><% $calc.sale %></td>
+	                    </tr>
+                </table>
+            </div>
+        	<div class="adminBlockBorder">
+            	<div class="blockBottomLine">
+                	最受注目的商品
+                </div>
+                <table class="previewHot tableStyle">
+                <tr>
+                	<th>排序</th>
+                    <th>標題</th>
+                    <th>次數</th>
+                </tr>
+				<% foreach $top.popular_top as $list %>
+                	<tr>
+                    	<td class="listWidth"><% $list@iteration %></td>
+                    	<td class="titleWidth"><a href="admin.php?act=shop&id=<% $list.id %>"><% $list.title %></a></td>
+                        <td class="countWidth"> <% $list.click %></td>
+                    </tr>
+				<% /foreach %>
+                </table>
+            </div>
+            <div class="adminBlockBorder">
+            	<div class="blockBottomLine">
+                	最不熱門的商品
+                </div>
+                 <table class="previewHot tableStyle">
+                <tr>
+                	<th>排序</th>
+                    <th>標題</th>
+                    <th>次數</th>
+                </tr>
+				<% foreach $top.popular_bot as $list %>
+                	<tr>
+                    	<td class="listWidth"><% $list@iteration %></td>
+                    	<td class="titleWidth"><a href="admin.php?act=shop&id=<% $list.id %>"><% $list.title %></a></td>
+                        <td class="countWidth"> <% $list.click %></td>
+                    </tr>
+				<% /foreach %>
+                </table>
+			</div>
+            <div class="adminBlockBorder">
+            	<div class="blockBottomLine">
+                	最佳銷售的商品
+                </div>
+                 <table class="previewHot tableStyle">
+                <tr>
+                	<th>排序</th>
+                    <th>標題</th>
+                    <th>銷售量</th>
+                </tr>
+				<% foreach $top.sale_top as $list %>
+                	<tr>
+                    	<td class="listWidth"><% $list@iteration %></td>
+                    	<td class="titleWidth"><a href="admin.php?act=shop&id=<% $list.id %>"><% $list.title %></a></td>
+                        <td class="countWidth"><% $list.sale %></td>
+                    </tr>
+				<% /foreach %>
+                </table>
+			</div>
+             <div class="adminBlockBorder">
+            	<div class="blockBottomLine">
+                	銷售最差的商品
+                </div>
+                <table class="previewHot tableStyle">
+                <tr>
+                	<th>排序</th>
+                    <th>標題</th>
+                    <th>銷售量</th>
+                </tr>
+				<% foreach $top.sale_bot as $list %>
+                	<tr>
+                    	<td class="listWidth"><% $list@iteration %></td>
+                    	<td class="titleWidth"><a href="admin.php?act=shop&id=<% $list.id %>"><% $list.title %></a></td>
+                        <td class="countWidth"><% $list.sale %></td>
+                    </tr>
+				<% /foreach %>
+                </table>
+			</div>
+              <div class="adminBlockBorder">
+            	<div class="blockBottomLine">
+                	庫存最少的商品
+                </div>
+                <table class="previewHot tableStyle">
+                <tr>
+                	<th>排序</th>
+                    <th>標題</th>
+                    <th>數量</th>
+                </tr>
+					<% foreach $top.store as $list %>
+                	<tr>
+                    	<td class="listWidth"><% $list@iteration %></td>
+                    	<td class="titleWidth"><a href="admin.php?act=shop&id=<% $list.id %>"><% $list.title %></a></td>
+                        <td class="countWidth"><% $list.store %></td>
+                    </tr>
+				<% /foreach %>
+                </table>
+			</div>
+            <div class="adminBlockBorder">
+            	<div class="blockBottomLine">
+                	最高利潤比的商品
+                </div>
+                 <table class="previewHot tableStyle">
+                <tr>
+                	<th>排序</th>
+                    <th>標題</th>
+                    <th>利潤比</th>
+                </tr>
+					<% foreach $top.profit as $list %>
+                	<tr>
+                    	<td class="listWidth"><% $list@iteration %></td>
+                    	<td class="titleWidth"><a href="admin.php?act=shop&id=<% $list.id %>"><% $list.title %></a></td>
+                        <td class="countWidth"><% $list.profit %></td>
+                    </tr>
+				<% /foreach %>
+                </table>
+			</div>
+		<% /if %>
+		</div>
+        </div>

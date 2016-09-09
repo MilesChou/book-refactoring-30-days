@@ -1,0 +1,108 @@
+<div class="listBar">
+	<% if isset($one) %>
+		<div class="mainFrame">
+			<form enctype="multipart/form-data" method="POST" name="shop" action="admin.php?act=shop&amp;op=upd&amp;id=<% $one.id %>">
+				<div class="mainContainer">
+					<div class="mainFrameImg">
+						<img class="mainImg" src="img/<% if $one.pic %><% $one.pic %><% else %>000.png<% /if %>"/>
+					</div>
+					<div class="mainFrameHelp">
+						<p>標題：<input type="text" name="title" value="<% $one.title %>"/></p>
+						<p>分類：<select name="category">
+							<% foreach $all_category as $category %>
+								<option value="<% $category.id %>"<% if $category.id == $one.category %>selected="selected"<% /if %>><% $category.title %></option>
+							<% /foreach %>
+							</select></p>
+						<p>成本：<input type="text" name="cost" value="<% $one.cost %>"/></p>
+						<p>價格：<input type="text" name="price" value="<% $one.price %>"/></p>
+						<p>庫存：<input type="text" name="store" value="<% $one.store %>"/></p>
+						<p>銷售量：<% $one.sale %></p>
+						<p>點閱次數：<% $one.click %></p>
+						<p>照片：<input type="file" name="pic"/></p>
+					</div>
+				</div>
+				<div class="mainFrameContent">
+					<textarea name="content"><% $one.content %></textarea>
+				</div>
+				<div class="mainFrameFunction"><input type="submit" value="確認更改"/></div>
+			</form>
+		</div>
+		<hr/>
+	<% else %>
+		<div class="mainFrame">
+			<form enctype="multipart/form-data" method="POST" name="shop" action="admin.php?act=shop&amp;op=add">
+				<div class="mainContainer">
+					<div class="mainFrameHelp">
+						<p>標題：<input type="text" name="title"/></p>
+						<p>分類：
+							<select name="category">
+								<% foreach $all_category as $category %>
+									<option value="<% $category.id %>"><% $category.title %></option>
+								<% /foreach %>
+							</select></p>
+						<p>成本：<input type="text" name="cost"/></p>
+						<p>價格：<input type="text" name="price"/></p>
+						<p>庫存：<input type="text" name="store"/></p>
+						<p>照片：<input type="file" name="pic"/></p>
+						<p>內容：<textarea name="content"></textarea></p>
+						<div><input type="submit" value="建立商品"/></div>
+					</div>
+				</div>
+			</form>
+		</div>
+		<hr/>
+	<% /if %>
+	<div id="actions"> 
+         <div class="widthBar">
+				<a class="prev">&laquo; 上一頁</a> 
+				<a class="next">下一頁 &raquo;</a> 
+         </div>
+	</div> 
+	<div class="scrollable vertical">
+		<div class="items" >
+			<% foreach $all as $shop %>
+				<% if $shop@index is div by 5 %>
+					<div>
+				<% /if %>
+				<div class="item">
+					<div class="listImgFrame">
+						<img class="listImg" src="img/<% if $shop.pic %><% $shop.pic %><% else %>000.png<% /if %>"/>
+					</div>
+					<table class="mainTable">
+						<tr>
+							<td><div></div><a href="admin.php?act=shop&id=<% $shop.id %>"><% $shop.title %></a></td>
+								<td colspan="2">編號：<% $shop.id %></td>
+						</tr>
+							<td><% $shop.content %></td>
+							<td colspan="2">分類：<a href="index.php?act=query&amp;query=category&amp;opera=eq&amp;val=<% $shop.category %>"><% $shop.ctitle %></a></td>
+						<tr>
+							<td></td>
+							<td colspan="2">點閱：<% $shop.click %></td>
+						</tr>
+							<td></td>
+							<td colspan="2">store:<% $shop.store %></td>
+						<tr>
+							<td></td>
+							<td >cost:<% $shop.cost %></td>
+							<td >sale:<% $shop.sale %></td>
+						</tr>
+						<tr>
+							<td><div>Add Cart</div></td>
+							<td colspan="2">價格：<% $shop.price %></td>
+						</tr>
+					</table>
+				</div>
+				<% if ($shop@iteration is div by 5) || $shop@last %>
+					</div>
+				<% /if %>
+			<% /foreach %>
+			</div>
+		</div>
+		<div id="actions"> 
+        	<div class="widthBar">
+				<a class="prev">&laquo; 上一頁</a> 
+				<a class="next">下一頁 &raquo;</a> 
+        	</div>
+		</div> 
+	</div>
+

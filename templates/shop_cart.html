@@ -1,0 +1,90 @@
+<% if isset($sn) %>
+	<div class="adminBlockBorder">
+		查詢專用網址。請記下來以便未來查詢使用：http://www.dream-on.idv.tw/~shopcart/index.php?act=cart&amp;op=query&amp;sn=<% $sn %>
+	</div>
+<% else %>
+<div class="adminBlockBorder">
+	<div class="blockBottomLine">
+    	購物清單
+    </div>
+    <table class="tableStyle previewHot tableOrderStyle">
+		<tbody>
+			<tr>
+				<th>類別</th>
+				<th>項目</th>
+				<th>單價</th>
+				<th>數量</th>
+				<% if $smarty.get.op != 'query' %>
+					<th>處理</th>
+				<% /if %>
+			</tr>
+		</tbody>
+		<% foreach from=$data.cart item=cart %>
+			<form name="cart<% $cart.id %>" method="POST" action="index.php?act=cart">
+<tr>
+					<td><% $cart.ctitle %></td>
+					<td><% $cart.title %></td>
+					<td><% $cart.price %></td>
+					<td><% $cart.amount %></td>
+					<% if $smarty.get.op != 'query' %>
+						<td><input type="submit" value="更改為" onclick="document.cart<% $cart.id %>.action += '&amp;op=upd&amp;id=<% $cart.id %>'"/><input type="text" name="amount" size="2" value="<% $cart.amount %>"/>
+						<input type="submit" value="刪除" onclick="document.cart<% $cart.id %>.action += '&amp;op=del&amp;id=<% $cart.id %>'"/>
+						</td>
+					<% /if %>
+<%*
+					<p>id:<% $shop.id %></p>
+					<p>content:<% $shop.content %></p>
+					<p>pic:<% $shop.pic %></p>
+					<p>cost:<% $shop.cost %></p>
+					<p>store:<% $shop.store %></p>
+					<p>sale:<% $shop.sale %></p>
+					<p>click:<% $shop.click %></p>
+*%>
+				</tr>
+			</form>
+		<% foreachelse %>
+			<tr>
+				<td colspan="5">目前無資料</td>
+			</tr>
+		<% /foreach %>
+	</table>
+    </div>
+    <div class="adminBlockBorder">
+		<div class="blockBottomLine">
+    		個人資料
+    	</div>
+        <div ><p>總價：<% $data.total %></p></div>
+        
+		<% if $smarty.get.op == 'query' %>
+            <p>姓名：	<% $data.user.name %></p>
+            <p>email：<% $data.user.email %></p>
+            <p>電話：<% $data.user.phone %></p>
+            <p>住址：<% $data.user.address %></p>
+		<% else %>
+        <form name="cart" method="POST" action="index.php?act=cart">
+            <p>姓名：<input type="text" name="name"/></p>
+            <p>email：<input type="text" name="email"/></p>
+            <p>電話：<input type="text" name="phone"/></p>
+            <p>住址：<input type="text" name="address"/></p>
+            <div><input type="submit" value="確認送出" onclick="document.cart.action += '&amp;op=submit'"/><a href="index.php?act=cart&amp;op=clear">清除全部</a></div>
+        </form>
+        <% /if %>
+    </div>
+    <%*
+        <% foreach from=$query item=shop %>
+            <div style="border:1px solid;">
+                <p>id:<% $shop.id %></p>
+                <p>category:<% $shop.ctitle %></p>
+                <p>title:<% $shop.title %></p>
+                <p>content:<% $shop.content %></p>
+                <p>pic:<% $shop.pic %></p>
+                <p>cost:<% $shop.cost %></p>
+                <p>price:<% $shop.price %></p>
+                <p>store:<% $shop.store %></p>
+                <p>sale:<% $shop.sale %></p>
+                <p>click:<% $shop.click %></p>
+            </div>
+        <% /foreach %>
+    *%>
+
+<% /if %>

@@ -1,0 +1,61 @@
+<div>
+	 <div class="adminBlockBorder">
+    	<div class="blockBottomLine">
+        	訂單詳細資料
+        </div>
+        <table class="tableStyle previewHot">
+              <tbody>
+                    <tr>
+                        <th class="tableOrderInfoTitleStyle">序號</td>
+                        <td><% $order.id %></td>
+                    </tr>
+                    <tr>
+                        <th class="tableOrderInfoTitleStyle">提交時間日期</td>
+                        <td><% $order.datetime %></td>
+                    </tr>
+                    <tr>
+                        <th class="tableOrderInfoTitleStyle">姓名</td>
+                        <td><% $order.name %></td>
+                    </tr>
+                    <tr>
+                        <th class="tableOrderInfoTitleStyle">email</td>
+                        <td><% $order.email %></td>
+                    </tr>
+                    <tr>
+                        <th class="tableOrderInfoTitleStyle">電話</td>
+                        <td><% $order.phone %></td>
+                    </tr>
+                    <tr>
+                        <th class="tableOrderInfoTitleStyle">住址</td>
+                        <td><% $order.address %></td>
+                    </tr>
+              </tbody>
+         </table>
+    </div>
+    <div class="adminBlockBorder">
+    	<div class="blockBottomLine">
+        	訂單詳細資料
+        </div>
+            <table class="tableStyle previewHot tableOrderStyle">
+                <tbody>
+                    <tr>
+                        <th>商品</th>
+                        <th>單價</th>
+                        <th>數量</th>
+                        <th>小計</th>
+                    </tr>
+                    <% foreach $order.data as $data %>
+                        <tr>
+                            <td><a href="index.php?id=<% $data.id %>" target="_blank"><% $data.title %></a></td>
+                            <td><% $data.price %></td>
+                            <td><% $data.amount %></td>
+                            <td><% $data.price * $data.amount %></td>
+                        </tr>
+                    <% /foreach %>
+                </tbody>
+            </table>
+        </div>
+        <p>總計：<% $order.total %></p>
+        <p><% if $order._checkout %>已結帳<% else %>未結帳 <a href="admin.php?act=order&op=checkout&id=<% $order.id %>">點此改為結帳</a<<% /if %></p>
+	
+</div>

@@ -1,0 +1,119 @@
+		
+        	<div class="classBar">
+				<div class="blockBottomLine">
+					產品分類
+				</div>
+				<ul>
+					<% foreach $all_category as $category %>
+						<li><a href="index.php?act=query&amp;query=category&amp;opera=eq&amp;val=<% $category.id %>"><% $category.title %></a></li>
+					<% /foreach %>
+				</ul>
+            </div>
+            <div class="listBar">
+            		<% if isset($one) %>
+					<div class="mainFrame">
+						<div class="mainContainer">
+							<div class="mainFrameImg">
+								<img class="mainImg" src="img/<% if $one.pic %><% $one.pic %><% else %>000.png<% /if %>"/>
+							</div>
+							<div class="mainFrameHelp">
+								標題：<% $one.title %>
+								<p>編號：<% $one.id %></p>
+								<p>分類：<% $one.ctitle %></p>
+								<%* <p>成本:<% $one.cost %></p> *%>
+								<p>價格：<% $one.price %></p>
+								<%* <p>庫存：<% $one.store %></p> *%>
+								<p>銷售量：<% $one.sale %></p>
+								<p>點閱：<% $one.click %></p>
+							</div>
+						</div>
+						<div class="mainFrameContent">
+							<% $one.content %>
+						</div>
+						<div class="mainFrameFunction">
+							<% if $one.store == 0 %>
+								目前無庫存
+							<% else %>
+								<a href="index.php?act=cart&amp;op=add&amp;id=<% $one.id %>">加入購物車</a>
+							<% /if %>
+						</div>
+					</div>
+					<hr/>
+					<% /if %>
+					
+			   
+					<div id="actions"> 
+                    	<div class="widthBar">
+							<a class="prev">&laquo; 上一頁</a> 
+							<a class="next">下一頁 &raquo;</a> 
+                        </div>
+					</div> 
+					<div class="scrollable vertical">
+					
+						<div class="items" > 
+						
+						
+						<% foreach $all as $shop %>
+							<% if $shop@index is div by 4 %>
+							<div>
+							<% /if %>
+							<div class="item">
+								<div class="listImgFrame">
+									<img class="listImg" src="img/<% if $shop.pic %><% $shop.pic %><% else %>000.png<% /if %>"/>
+								</div>
+								<table class="mainTable">
+									<tr>
+										<td><div class="titleLink"><a href="index.php?<% if $smarty.get.act == 'query' %>act=query&amp;query=<% $smarty.get.query %>&amp;opera=<% $smarty.get.opera %>&amp;val=<% $smarty.get.val %><% /if %>&amp;id=<% $shop.id %>"><% $shop.title %></a></div></td>
+										<td>編號：<% $shop.id %></td>
+									</tr>
+									<tr>
+										<td><% $shop.content %></td>
+										<td>分類：<a href="index.php?act=query&amp;query=category&amp;opera=eq&amp;val=<% $shop.category %>"><% $shop.ctitle %></a></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td>點閱：<% $shop.click %></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td>庫存：<% $shop.store %></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td >銷售量：<% $shop.sale %></td>
+									</tr>
+									<tr>
+										<td>
+											<% if $shop.store == 0 %>
+												目前無庫存
+											<% else %>
+												<a href="index.php?act=cart&amp;op=add&amp;id=<% $shop.id %>">加入購物車</a>
+											<% /if %>
+										</td>
+										<td>價格：<% $shop.price %></td>
+									</tr>
+								</table>
+							</div>
+							<% if ($shop@iteration is div by 4) || $shop@last %>
+							</div>
+							<% /if %>
+						<% /foreach %>
+						</div>
+					</div>
+					<div id="actions"> 
+                    	<div class="widthBar">
+							<a class="prev">&laquo; 上一頁</a> 
+							<a class="next">下一頁 &raquo;</a> 
+                        </div>
+					</div> 
+                    <div id="actions"> 
+                    	<div class="fixedBar">
+							<a class="prev">上一頁</a> 
+							<a class="next">下一頁</a> 
+                        </div>
+					</div> 
+            </div>
+        
+		
+	
+    

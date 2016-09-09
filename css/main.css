@@ -1,0 +1,318 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* main */
+
+/* global */
+
+/* 預設BODY的所有間隔為0，意即貼緊版面*/
+body {
+	margin:0;
+	font-size: 12px;
+}
+
+/* A為超連結標籤，LINK為預設狀態，VISITED為點擊過後的狀態*/
+a:link, a:visited {
+	color: #804000;
+	text-decoration: none;
+}
+
+/* HOVER為滑鼠移入時的狀態，移出時則會轉為LINK的狀態*/
+a:hover {
+	color: #C0C0C0;	
+	text-decoration: underline;
+}
+
+.tableStyle tr:hover {
+	background-color: #F8F0FF;
+}
+
+.tableStyle .trOdd {
+	background-color: #FFF;
+}
+
+.tableStyle .trEven {
+	background-color: #F9F9F9;
+}
+
+
+
+/* 將IMG標籤的邊框設為NONE，因為IE預設會顯示藍邊框*/
+img {
+	border: none;	
+}
+
+ul {
+	list-style: none;
+	text-indent: -3.2em;	
+}
+
+/* 全域特殊功能 */
+
+.blockBottomLine {
+	border-bottom: 1px solid #CCC;
+	padding: 0 0 5px 0;	
+	margin: 0 0 5px 0;
+}
+
+/* 所有DIV元素的容器 */
+
+.container {
+	margin: auto;
+	width: 100%;
+	float: left;
+	background-image: url(../material/containerBg.jpg);
+	background-repeat: repeat;
+	/*width: 1000px;*/
+}
+
+/* topbanner */
+
+/* TOP區的DIV
+	寬度為滿版
+	高為100PX
+	設定背景並且以X軸填滿
+	加上1PX的底框
+	設定位置為相對，目的為要使TOP DIV內的DIV元素以TOP為基準定位
+*/
+
+.top {
+	width: 100%;
+	height: 100px;
+	background-image: url(../material/topBg.png);
+	background-repeat: repeat-x;
+	border-bottom: 1px solid #CCC;
+	position: relative;
+}
+
+/* LOGO區定位，浮動靠左，並且與其他DIV相隔10PX*/
+
+.topLogo {
+	margin: 10px;
+	float: left;
+}
+
+/* BUTTON區定位，浮動靠右，與其他DIV相隔10PX，設定字型大小為12PX*/
+
+.topButton {
+	margin: 10px;
+	font-size: 12px;
+	float: right;
+}
+
+/* 搜尋區的DIV，位址為絕對位址，參考區為TOP，與上層DIV相隔:上方60PX 右方-225PX ，以上層DIV為基準的50%位址，-225PX是為了減掉寬度的一半，使其置中*/
+
+.topSearch {
+	position: absolute;
+	width: 500px;
+	margin: 60px -225px 0 0;
+	right: 50%;
+}
+
+/* 利用CSS設定TEXTBOX的寬度 */
+
+.topSearchBar {
+	width: 350px;
+}
+
+/* content */
+
+/* 內容顯示區塊 ，置中對齊 */
+
+.content {
+	float:left;
+	width: 1050px;
+	padding: 10px 0 10px 0;
+	margin: 0 auto;
+	background-color: #FFF;
+	
+}
+
+.contentContainer {
+	width: 1050px;
+	margin: 0 auto;	
+	position:relative;
+}
+
+/* 左側類別區塊 ，浮動靠左*/
+.classBar {
+	margin: 0 10px 10px 10px;
+	padding: 5px;
+	width: 128px;
+	float: left;
+	border: 1px solid #CCC;
+	background-color: #FAFAFA;
+}
+
+
+
+/** 右側清單區塊，浮動靠左 
+*/
+.listBar {
+	width: 850px;	
+	float: left;
+}
+
+/* foot */
+
+/* 底部FOOT區，置中對齊 */
+
+.foot {
+	/*padding: 10px;*/
+	background-image: url(../material/footBg.jpg);
+	background-repeat: repeat-x;
+	border-top: 1px solid #999;
+	width: 1050px;
+	height: 80px;
+	margin: 0 auto;
+	clear:both;
+	position: relative;
+}
+
+.recomend {
+	text-align: center;
+	width: 250px;
+	margin: 0 0 0 -125px;
+	left: 50%;
+	top: 30px;
+	position: absolute;
+}
+
+/* listBar */
+
+/* main */
+
+/* 清單區裡的產品顯示框 ，與邊界相隔10PX，與下方DIV相隔15PX，浮動靠左*/
+
+.mainFrame {
+	padding: 10px;
+	margin: 0 0 15px 0;
+	width: 830px;
+	float: left;
+}
+
+/* 產品顯示區裡的相片顯示容器，浮動靠左，與內容間隔10PX，設置邊框1PX */
+
+.mainFrameImg {
+	float: left;
+	padding: 10px;
+	border: 1px solid #ccc;
+}
+
+/* 將相片框及文字框包住，好讓能跟mainFrameContent距離20PX */
+
+.mainContainer {
+	float:left;
+	margin-bottom: 20px;	
+}
+
+/* 產品規格框 */
+
+.mainFrameHelp {
+	padding: 0 15px;
+	float: left;
+}
+
+/* 產品說明框，清除上方CSS的POSITION樣式，與下方DIV元素相隔20PX，與內容上下間隔15PX 左右0PX，並設定上下邊框為虛線樣式 */
+
+.mainFrameContent {
+	clear: both;
+	margin-bottom: 20px;
+	padding: 15px 0;
+	border-top: 1px dashed #CCC;
+	border-bottom: 1px dashed #CCC;
+}
+
+/* 產品顯示區功能放置區塊，與上下相隔15PX */
+
+.mainFrameFunction {
+	margin: 15px 0;
+}
+
+/* 產品圖片預設寬比例 */
+
+.mainImg {
+	width: 350px;	
+}
+
+/* 產品規格表格 */
+
+.mainTable {
+	width: 560px;
+}
+
+
+/* list */
+
+.listImg {
+	/*height: 180px;	*/
+}
+
+/* 清單圖片框，浮動靠左，與內容相間9PX，邊框1PX，並與右邊表格相隔20PX */
+
+.listImgFrame {
+	margin-right:20px;
+	float:left;
+	padding:9px;
+	border: 1px solid #CCC;	
+}
+
+/* admin */
+
+/* admin index */
+
+/* index table */
+
+.adminContent {
+	float: right;
+	margin: 0 10px;	
+}
+
+.adminBlockBorder {
+	padding: 5px;
+	margin: 0 0 10px 0;
+	border: 1px solid #CCC;	
+	background-color: #FAFAFA;
+}
+
+.adminClassBar {
+	width: 162px;
+	float:left;	
+}
+
+.previewHot {
+	width: 100%;	
+}
+
+.previewHot tr th {
+	background-color: #ECFFD9;
+		
+}
+
+.listWidth {
+	text-align: center;
+	width: 30px;	
+}
+
+.titleWidth {
+	
+}
+
+.countWidth {
+	text-align: center;
+	width: 100px;	
+}
+
+/* admin shop order */
+
+.tableOrderStyle {
+	text-align: center;	
+}
+
+.tableOrderInfoTitleStyle {
+	width: 100px;
+	text-align: left;	
+}
+
+.tableOrderInfoContentStyle {
+}
