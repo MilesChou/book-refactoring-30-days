@@ -13,3 +13,12 @@
 未來 30 天，將會分享我對於重構的了解，以及示範如何做重構，希望大家對重構能有更深刻的認識。
 
 [持續整合]: https://github.com/MilesChou/book-intro-of-ci
+
+## 目錄
+
+## 誌謝
+
+* 感謝老婆為了支持我寫作，把家裡打點好好的，也感謝老婆幫我看文章。
+* 互相鼓（ㄕㄤ）勵（ㄏㄞˋ）的團隊成員 [聖佑](https://github.com/shengyou) 與 [Scott](https://github.com/shazi7804)
+* 幫忙看文章的 [@pexlkw](https://github.com/pexlkw) 與 [@phoebe90](https://github.com/phoebe90)
+* 互相推坑的 [DevOps Taiwan](https://www.facebook.com/groups/DevOpsTaiwan/) 夥伴們
