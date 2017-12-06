@@ -17,6 +17,7 @@
 ## 目錄
 
 * [Day 1 - 什麼是重構（Refactoring）](/docs/day01.md)
+* [Day 2 - 技術債（Technical Debt）](/docs/day02.md)
 
 ## 誌謝
 
