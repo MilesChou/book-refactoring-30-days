@@ -18,6 +18,7 @@
 
 * [Day 1 - 什麼是重構（Refactoring）](/docs/day01.md)
 * [Day 2 - 技術債（Technical Debt）](/docs/day02.md)
+* [Day 3 - 敏捷與重構](/docs/day03.md)
 
 ## 誌謝
 
