@@ -19,7 +19,8 @@
 * [Day 1 - 什麼是重構（Refactoring）](/docs/day01.md)
 * [Day 2 - 技術債（Technical Debt）](/docs/day02.md)
 * [Day 3 - 非技術人員所要了解的警訊](/docs/day03.md)
-* [Day 4 - 敏捷與重構](/docs/day04.md)
+* [Day 4 - 開發者能察覺的壞味道（Bad Smell）](/docs/day04.md)
+* [Day 5 - 敏捷與重構](/docs/day05.md)
 
 ## 誌謝
 
