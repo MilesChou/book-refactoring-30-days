@@ -21,6 +21,7 @@
 * [Day 3 - 非技術人員所要了解的警訊](/docs/day03.md)
 * [Day 4 - 開發者能察覺的壞味道（Bad Smell）](/docs/day04.md)
 * [Day 5 - 敏捷與重構](/docs/day05.md)
+* [Day 6 - 軟體量測（Software Metric）](/docs/day06.md)
 
 ## 誌謝
 
