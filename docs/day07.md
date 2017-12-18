@@ -1,4 +1,4 @@
-# 物件導向設計原則－－單一職責原則（Single responsibility principle）
+# SOLID 之 單一職責原則（Single responsibility principle）
 
 雖然[軟體量測][Day 6]很方便，也能找到很多可能有問題的程式碼，但最終還是需要人工檢查程式的設計。這時就需要原則（principle），讓檢視過程能有正確的方向。
 

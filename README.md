@@ -22,8 +22,8 @@
 * [Day 4 - 開發者能察覺的壞味道（Bad Smell）](/docs/day04.md)
 * [Day 5 - 敏捷與重構](/docs/day05.md)
 * [Day 6 - 軟體量測（Software Metric）](/docs/day06.md)
-* [Day 7 - 物件導向設計原則－－單一職責原則（Single responsibility principle）](/docs/day07.md)
-* [Day 8 - 物件導向設計原則－－開關原則（Open-Close principle）](/docs/day07.md)
+* [Day 7 - SOLID 之 單一職責原則（Single responsibility principle）](/docs/day07.md)
+* [Day 8 - SOLID 之 開關原則（Open-Close principle）](/docs/day08.md)
 
 ## 誌謝
 
