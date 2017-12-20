@@ -1,4 +1,4 @@
-# SOLID 之 開關原則（Open-Close principle）
+# SOLID 之 開關原則（Open-close principle）
 
 原文定義是這樣子的：
 
