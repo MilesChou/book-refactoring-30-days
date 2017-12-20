@@ -23,8 +23,9 @@
 * [Day 5 - 敏捷與重構](/docs/day05.md)
 * [Day 6 - 軟體量測（Software Metric）](/docs/day06.md)
 * [Day 7 - SOLID 之 單一職責原則（Single responsibility principle）](/docs/day07.md)
-* [Day 8 - SOLID 之 開關原則（Open-Close principle）](/docs/day08.md)
+* [Day 8 - SOLID 之 開關原則（Open-close principle）](/docs/day08.md)
 * [Day 9 - SOLID 之 里氏替換原則（Liskov substitution principle）](/docs/day09.md)
+* [Day 10 - SOLID 之 介面隔離原則（Interface segregation principle）](/docs/day10.md)
 
 ## 誌謝
 
