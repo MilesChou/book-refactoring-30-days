@@ -26,6 +26,7 @@
 * [Day 8 - SOLID 之 開關原則（Open-close principle）](/docs/day08.md)
 * [Day 9 - SOLID 之 里氏替換原則（Liskov substitution principle）](/docs/day09.md)
 * [Day 10 - SOLID 之 介面隔離原則（Interface segregation principle）](/docs/day10.md)
+* [Day 11 - SOLID 之 依賴反轉原則（Dependency inversion principle）](/docs/day11.md)
 
 ## 誌謝
 
