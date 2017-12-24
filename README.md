@@ -29,6 +29,7 @@
 * [Day 11 - SOLID 之 依賴反轉原則（Dependency inversion principle）](/docs/day11.md)
 * [Day 12 - 不在 SOLID 裡的 最小知識原則（Least Knowledge Principle）](/docs/day12.md)
 * [Day 13 - 看到 code 寫成這樣我也是醉了](/docs/day13.md)
+* [Day 14 - 重構的第一步－－讓程式可以動](/docs/day14.md)
 
 ## 誌謝
 
