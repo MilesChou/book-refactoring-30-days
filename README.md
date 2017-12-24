@@ -27,6 +27,7 @@
 * [Day 9 - SOLID 之 里氏替換原則（Liskov substitution principle）](/docs/day09.md)
 * [Day 10 - SOLID 之 介面隔離原則（Interface segregation principle）](/docs/day10.md)
 * [Day 11 - SOLID 之 依賴反轉原則（Dependency inversion principle）](/docs/day11.md)
+* [Day 12 - 不在 SOLID 裡的 最小知識原則（Least Knowledge Principle）](/docs/day12.md)
 
 ## 誌謝
 
