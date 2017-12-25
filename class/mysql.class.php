@@ -92,7 +92,7 @@ class db {
 	 * 會return一個二維Array
 	 */
 	public function all($SQL) {
-		$data = '';
+		$data = [];
 		$this->query($SQL);
 		while( $row = mysql_fetch_array($this->_resource, $this->_fetch_mode) ){
 			if($row) {

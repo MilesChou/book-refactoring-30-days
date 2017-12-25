@@ -1,4 +1,7 @@
 <?php
+
+require_once __DIR__ . '/workaround.php';
+
 	session_start();
 	/**
 	 * 定義管理員帳號密碼
@@ -39,9 +42,9 @@
 	 */
 	define('DB_TYPE', 'mysql');
 	define('DB_CHARSET', 'utf8');
-	define('DB_HOST', 'localhost');
-	define('DB_USER', 'shopcart');
-	define('DB_PASS', 'shopcart');
+	define('DB_HOST', 'mysql');
+	define('DB_USER', 'root');
+	define('DB_PASS', 'password');
 	define('DB_NAME', 'shopcart');
 
 	/**
@@ -79,5 +82,5 @@
 		'per_page' => PER_PAGE,
 		'per_top_list' => PER_TOP_LIST));
 		
-	
+
 ?>
