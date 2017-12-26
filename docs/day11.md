@@ -223,7 +223,7 @@ class Boss
         // 衝刺，把這一票需求做完就行了
         foreach ($this->demand as $demand) {
             $randKey = array_rand($this->employees);
-            $this->employees[$randKey]->code($demand);
+            $this->employees[$randKey]->workHard($demand);
         }
         
         // 衝刺後，辛苦大家了
