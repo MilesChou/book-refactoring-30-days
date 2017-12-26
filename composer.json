@@ -1,0 +1,12 @@
+{
+    "require": {
+        "phpunit/phpunit": "^6.4"
+    },
+    "autoload": {
+        "files": [
+            "class/mysql.class.php",
+            "class/shop.class.php",
+            "workaround.php"
+        ]
+    }
+}
