@@ -8,7 +8,7 @@
 
 直譯：
 
-每個單位應該對其他單只能有有限的知識：只了解跟目前單位比較親近的單元。
+每個單元應該對其他單元只能有有限的知識：只了解跟目前單元比較親近的單元。
 
 程式寫了就是要拿來執行，從未執行過的程式碼比 bug 還要不如，因為連它是不是 bug 都不曉得。換言之，單元與單元之間是會有耦合的。這個原則在告訴我們該如何控制耦合的程度。
 
@@ -187,7 +187,7 @@ class Newbie
 
 * [SOLID][] | 維基百科
 * [設計模式之禪][] | 秦小波
-* [什麼是 DevOps ？][] | CI 從入門到入坑
+* [什麼是 DevOps ？][DevOps] | CI 從入門到入坑
 * [Makefile][] | 104 Guideline
 
 [SOLID]: https://en.wikipedia.org/wiki/SOLID_(object-oriented_design)
