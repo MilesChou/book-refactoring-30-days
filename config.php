@@ -34,12 +34,11 @@ require_once __DIR__ . '/workaround.php';
 	/**
 	 * 定義資料庫常數
 	 */
-	defined('DB_TYPE') or define('DB_TYPE', 'mysql');
-	defined('DB_CHARSET') or define('DB_CHARSET', 'utf8');
-	defined('DB_HOST') or define('DB_HOST', '127.0.0.1');
-	defined('DB_USER') or define('DB_USER', 'root');
-	defined('DB_PASS') or define('DB_PASS', 'password');
-	defined('DB_NAME') or define('DB_NAME', 'shopcart');
+	defined('DB_CHARSET') or define('DB_CHARSET', config('database.connections.mysql.charset'));
+	defined('DB_HOST') or define('DB_HOST', config('database.connections.mysql.host'));
+	defined('DB_USER') or define('DB_USER', config('database.connections.mysql.username'));
+	defined('DB_PASS') or define('DB_PASS', config('database.connections.mysql.password'));
+	defined('DB_NAME') or define('DB_NAME', config('database.connections.mysql.database'));
 
 	/**
 	 * 設定樣版
