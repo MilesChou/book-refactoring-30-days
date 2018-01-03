@@ -5,7 +5,7 @@ namespace Tests;
 use PHPUnit\Framework\TestCase;
 use shop;
 
-class ExampleTest extends TestCase
+class ShopTest extends TestCase
 {
     /**
      * @test

@@ -9,15 +9,28 @@
          processIsolation="false"
          stopOnFailure="false">
     <testsuites>
-        <testsuite name="UnitTest">
-            <directory suffix="Test.php">./tests</directory>
+        <testsuite name="Feature">
+            <directory suffix="Test.php">./tests/Feature</directory>
+        </testsuite>
+
+        <testsuite name="Unit">
+            <directory suffix="Test.php">./tests/Unit</directory>
         </testsuite>
     </testsuites>
+    <filter>
+        <whitelist processUncoveredFilesFromWhitelist="true">
+            <directory suffix=".php">./app</directory>
+        </whitelist>
+    </filter>
     <php>
         <const name="DB_HOST" value="127.0.0.1"/>
         <const name="DB_USER" value="root"/>
         <const name="DB_PASS" value="password"/>
         <const name="DB_NAME" value="shopcart"/>
         <const name="DB_CHARSET" value="utf8"/>
+        <env name="APP_ENV" value="testing"/>
+        <env name="CACHE_DRIVER" value="array"/>
+        <env name="SESSION_DRIVER" value="array"/>
+        <env name="QUEUE_DRIVER" value="sync"/>
     </php>
 </phpunit>
