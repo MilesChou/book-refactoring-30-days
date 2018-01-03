@@ -12,22 +12,22 @@ class InitDatabase extends Migration
         Schema::create('order', function (Blueprint $table) {
             $table->increments('id');
             $table->dateTime('datetime');
-            $table->string('name');
-            $table->string('email');
-            $table->string('phone');
-            $table->string('address');
+            $table->string('name', 30);
+            $table->string('email', 30);
+            $table->string('phone', 15);
+            $table->string('address', 100);
             $table->text('data');
             $table->integer('total');
-            $table->string('sn')->unique();
+            $table->string('sn', 32)->unique();
             $table->boolean('_checkout');
         });
 
         Schema::create('product', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('category');
-            $table->string('title');
+            $table->string('title', 30);
             $table->text('content');
-            $table->string('pic');
+            $table->string('pic', 50);
             $table->integer('cost');
             $table->integer('price');
             $table->integer('store');
@@ -37,7 +37,7 @@ class InitDatabase extends Migration
 
         Schema::create('product_category', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
+            $table->string('title', 30);
         });
 
         // TODO: 未來移至 Seeder
