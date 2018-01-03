@@ -11,6 +11,10 @@
 |
 */
 
+Route::get('/admin', function () {
+    require_once __DIR__ . '/../admin.php';
+});
+
 Route::get('/', function () {
-    return view('welcome');
+    require_once __DIR__ . '/../index.php';
 });
