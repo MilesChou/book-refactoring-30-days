@@ -30,3 +30,15 @@ Desktop.ini
 
 # Composer files
 /vendor/
+
+# Laravel ignore files
+/node_modules
+/public/hot
+/public/storage
+/storage/*.key
+/.vagrant
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
+.env
