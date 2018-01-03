@@ -11,7 +11,7 @@ require_once __DIR__ . '/workaround.php';
 	 * 除錯模式開啟與關閉
 	 * 使用布林
 	 */
-	define('DEBUG_MODE', True);
+	define('DEBUG_MODE', env('APP_DEBUG'));
 	if (DEBUG_MODE){
 		ini_set('display_errors', 'On');
 	} else {
