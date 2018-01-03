@@ -32,6 +32,7 @@
 * [Day 14 - 重構的第一步－－讓程式可以動](/docs/day14.md)
 * [Day 15 - 來試著升級 PHP 吧](/docs/day15.md)
 * [Day 16 - 導入 Composer](/docs/day16.md)
+* [Day 17 - 整合 Laravel](/docs/day17.md)
 
 ## 誌謝
 
