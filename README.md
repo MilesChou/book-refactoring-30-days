@@ -33,6 +33,7 @@
 * [Day 15 - 來試著升級 PHP 吧](/docs/day15.md)
 * [Day 16 - 導入 Composer](/docs/day16.md)
 * [Day 17 - 整合 Laravel](/docs/day17.md)
+* [Day 18 - 導入 Database Migration](/docs/day18.md)
 
 ## 誌謝
 
