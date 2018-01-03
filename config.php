@@ -2,7 +2,6 @@
 
 require_once __DIR__ . '/workaround.php';
 
-	session_start();
 	/**
 	 * 定義管理員帳號密碼
 	 */
@@ -18,11 +17,7 @@ require_once __DIR__ . '/workaround.php';
 	} else {
 		ini_set('display_errors', 'Off');
 	}
-	/**
-	 * 定義工作目錄(PATH)與虛擬目錄(URL)
-	 */
-	//$_ROOT_PATH_ADDTION = (PHP_OS == 'Linux')?'/':Null;
-	define('ROOT_URL', 'http://' . $_SERVER['SERVER_NAME'] . '/');
+
 	/**
 	 * 定義其他目錄
 	 */
@@ -39,12 +34,12 @@ require_once __DIR__ . '/workaround.php';
 	/**
 	 * 定義資料庫常數
 	 */
-	define('DB_TYPE', 'mysql');
-	define('DB_CHARSET', 'utf8');
-	define('DB_HOST', '127.0.0.1');
-	define('DB_USER', 'root');
-	define('DB_PASS', 'password');
-	define('DB_NAME', 'shopcart');
+	defined('DB_TYPE') or define('DB_TYPE', 'mysql');
+	defined('DB_CHARSET') or define('DB_CHARSET', 'utf8');
+	defined('DB_HOST') or define('DB_HOST', '127.0.0.1');
+	defined('DB_USER') or define('DB_USER', 'root');
+	defined('DB_PASS') or define('DB_PASS', 'password');
+	defined('DB_NAME') or define('DB_NAME', 'shopcart');
 
 	/**
 	 * 設定樣版
