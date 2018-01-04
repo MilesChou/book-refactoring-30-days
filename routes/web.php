@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/admin', function () {
+Route::get('/admin.php', function () {
     ob_start();
     require_once __DIR__ . '/../admin.php';
     return ob_get_clean();
