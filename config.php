@@ -11,7 +11,7 @@ require_once __DIR__ . '/workaround.php';
 	 * 除錯模式開啟與關閉
 	 * 使用布林
 	 */
-	define('DEBUG_MODE', env('APP_DEBUG'));
+    defined('DEBUG_MODE') or define('DEBUG_MODE', env('APP_DEBUG'));
 	if (DEBUG_MODE){
 		ini_set('display_errors', 'On');
 	} else {
@@ -21,7 +21,7 @@ require_once __DIR__ . '/workaround.php';
 	/**
 	 * 定義其他目錄
 	 */
-	define('CLASS_PATH', base_path('/class/'));
+    defined('CLASS_PATH') or define('CLASS_PATH', base_path('/class/'));
 
 //	$include_path[] = get_include_path();
 //	$include_path[] = CLASS_PATH;
@@ -43,7 +43,7 @@ require_once __DIR__ . '/workaround.php';
 	/**
 	 * 設定樣版
 	 */
-	include(CLASS_PATH . "Smarty/Smarty.class.php");
+	require_once CLASS_PATH . 'Smarty/Smarty.class.php';
 	$tpl = new Smarty;
 	$tpl->template_dir = base_path('/templates/');
 	$tpl->compile_dir = base_path('/templates/compile/');
@@ -57,16 +57,16 @@ require_once __DIR__ . '/workaround.php';
 	/**
 	 * 引用資料庫
 	 */
-	require_once CLASS_PATH . "mysql.class.php";
+	require_once CLASS_PATH . 'mysql.class.php';
 
 	/**
 	 * 定義商品一頁幾個項目
 	 */
-	define('PER_PAGE', 5);
+    defined('PER_PAGE') or define('PER_PAGE', 5);
 	/**
 	 * 定義後台首頁排行項目數量
 	 */
-	define('PER_TOP_LIST', 5);
+    defined('PER_TOP_LIST') or define('PER_TOP_LIST', 5);
 	/**
 	 * 輸出設定至樣版config變數
 	 */
