@@ -1,7 +1,7 @@
 <?php
 
 // 引用設定檔
-require_once 'config.php';
+require 'config.php';
 // 引用shop類別檔
 require_once CLASS_PATH . 'shop.class.php';
 // 建立shop物件
