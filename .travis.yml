@@ -1,0 +1,39 @@
+sudo: false
+os: linux
+dist: trusty
+language: php
+php: 7.1
+
+branches:
+  only:
+  - example
+
+services:
+- mysql
+
+env:
+  global:
+    DB_HOST: 127.0.0.1
+    DB_PORT: 3306
+    DB_DATABASE: shopcart
+    DB_USERNAME: root
+    DB_PASSWORD: password
+
+before_install:
+- mysql -e "CREATE DATABASE ${DB_DATABASE} DEFAULT CHARACTER SET utf8mb4 DEFAULT COLLATE utf8mb4_unicode_ci;"
+- mysql -e "SET PASSWORD = PASSWORD('${DB_PASSWORD}');"
+
+install:
+- composer install
+
+before_script:
+- cp .env.example .env
+- php artisan key:generate
+- php artisan migrate --force
+
+script:
+- php vendor/bin/phpunit
+
+cache:
+  directories:
+  - vendor
