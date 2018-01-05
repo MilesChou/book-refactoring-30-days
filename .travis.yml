@@ -24,10 +24,10 @@ before_install:
 - mysql -e "SET PASSWORD = PASSWORD('${DB_PASSWORD}');"
 
 install:
+- cp .env.example .env
 - composer install
 
 before_script:
-- cp .env.example .env
 - php artisan key:generate
 - php artisan migrate --force
 
