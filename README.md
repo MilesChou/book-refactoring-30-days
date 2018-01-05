@@ -36,6 +36,7 @@
 * [Day 18 - 導入 Database Migration](/docs/day18.md)
 * [Day 19 - 整合 CI](/docs/day19.md)
 * [Day 20 - 導入驗收測試（1）](/docs/day20.md)
+* [Day 21 - 導入驗收測試（2）](/docs/day21.md)
 
 ## 誌謝
 
