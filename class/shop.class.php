@@ -7,16 +7,19 @@ class Shop
      * 可接受查詢的欄位
      */
     private $_CLOUMN = ['id', 'category', 'title', 'content', 'price', 'store', 'sale', 'click'];
+
     /**
      * $_LIKE_QUERY
      * 可接受模糊比對的欄位
      */
     private $_LIKE_QUERY = ['title', 'content'];
+
     /**
      * $_NUM_QUERY
      * 可接受數字比對的欄位
      */
     private $_NUM_QUERY = ['id', 'category', 'price', 'store', 'sale', 'click'];
+
     /**
      * $_QUERY_OP
      * 可接受的比對運算元
@@ -30,16 +33,19 @@ class Shop
         'eq' => '=',
         'sne' => '<>',
         'seq' => '='];
+
     /**
      * $_debug
      * 除錯模式
      */
     private $_debug = false;
+
     /**
      * $_db
      * 放DB物件的成員
      */
     private $_db = null;
+
     /**
      * $data
      * 資料
@@ -47,7 +53,6 @@ class Shop
     private $data = null;
 
     /**
-     * shop::__construct(boolen $DEBUG_MODE)
      * 建構方法
      * 可傳入一布林，這會決定之後的使用是否會開啟除錯模式
      * 建構的同時，會建立DB物件，DB物件使用方法請參考class/mysql.class.php
@@ -276,9 +281,10 @@ class Shop
     }
 
     /**
-     * shop::one_category(int $id)
      * 取得單一項目的方法
-     * 參數：$id為指定產品資料表的id欄位值
+     *
+     * @param int $id 指定產品資料表的 id 欄位值
+     * @return array|null
      */
     public function oneCategory($id)
     {
@@ -287,8 +293,11 @@ class Shop
     }
 
     /**
-     * shop::cart_action(string $op, array $data)
      * 處理購物車的方法
+     *
+     * @param string $op
+     * @param null|array $data
+     * @return array
      */
     public function cartAction($op, $data = null)
     {
@@ -340,8 +349,10 @@ class Shop
     }
 
     /**
-     * shop::_cart_total(array $data)
      * 購物車計算總合的方法
+     *
+     * @param array $data
+     * @return float|int
      */
     private function cartTotal($data)
     {
@@ -353,8 +364,9 @@ class Shop
     }
 
     /**
-     * shop::_cart_submit(array $data)
      * 購物車提交的方法
+     *
+     * @param array $data
      */
     private function cartSubmit($data)
     {
@@ -365,18 +377,21 @@ class Shop
         if ($this->_db->insert($data, 'order') === false) {
             $this->showAlert('訂單送出失敗！請返回操作！', BACK);
         }
-        return;
     }
 
     /**
-     * shop::show_alert(string $msg, string $url)
      * 顯示訊息的方法
+     *
+     * @param null|string $msg
+     * @param null|string $url
+     * @return string
      */
     public function showAlert($msg = null, $url = null)
     {
         if ($msg != null) {
             $msg = 'alert(\'' . $msg . '\');';
         }
+
         switch ($url) {
             case 'BACK':
                 $url = 'history.go(-1);';
@@ -391,15 +406,18 @@ class Shop
     }
 
     /**
-     * shop::order_action(string $op, array $data)
      * 處理購物車的方法
+     *
+     * @param string $op
+     * @param null|array $data
+     * @return array|bool|mysqli_result|null|resource
      */
     public function orderAction($op, $data = null)
     {
-
         if (!isset($_SESSION['cart'])) {
             $_SESSION['cart'] = [];
         }
+
         switch ($op) {
             case 'view':
                 $SQL = 'SELECT * FROM `order`';
@@ -437,18 +455,19 @@ class Shop
                 echo $this->showAlert('訂單已清除', 'index.php?act=cart&op=view');
                 break;
         }
-        return;
     }
 
     /**
-     * shop::_analysis_order(string $op, array $data)
      * 購物車訂單分析
+     *
+     * @param string $data
+     * @return array
      */
     private function analysisOrder($data)
     {
         $result = [];
-        foreach (explode("|", $data) as $row) {
-            $order = explode(":", $row);
+        foreach (explode('|', $data) as $row) {
+            $order = explode(':', $row);
             $SQL = 'SELECT `p`.*, `c`.`title` AS `ctitle` FROM `product` AS `p` JOIN `product_category` AS `c` ON `p`.`category` = `c`.`id` WHERE `p`.`id` = ' . $order[0];
             $order_data = $this->_db->row($SQL);
             $order_data['amount'] = $order[1];

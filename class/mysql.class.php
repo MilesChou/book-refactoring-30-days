@@ -10,15 +10,15 @@ class Mysql
      * 取得資料的型式
      * 在db::init()方法中設定
      */
-    private $_fetch_mode = null;
+    private $_fetch_mode;
     /**
      * 連線代碼
      */
-    private $_connection = null;
+    private $_connection;
     /**
      * 存取資源的成員
      */
-    private $_resource = null;
+    private $_resource;
     /**
      * debug模式
      */
