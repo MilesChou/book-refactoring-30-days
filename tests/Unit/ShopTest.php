@@ -3,7 +3,7 @@
 namespace Tests;
 
 use PHPUnit\Framework\TestCase;
-use shop;
+use Shop;
 
 class ShopTest extends TestCase
 {
@@ -20,8 +20,8 @@ class ShopTest extends TestCase
      */
     public function smokeTestShop()
     {
-        $shop = new shop(true);
+        $shop = new Shop(true);
 
-        $this->assertInstanceOf(shop::class, $shop);
+        $this->assertInstanceOf(Shop::class, $shop);
     }
 }
