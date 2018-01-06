@@ -38,6 +38,7 @@ before_script:
 - php artisan serve &
 
 script:
+- php vendor/bin/phpcs
 - php vendor/bin/phpunit
 - php artisan dusk
 
