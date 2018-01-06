@@ -22,4 +22,12 @@
 
     <!-- Don't check Smarty because it's third-party lib -->
     <exclude-pattern>class/Smarty/*</exclude-pattern>
+
+    <!-- specific and just exclude rules in some file -->
+    <rule ref="PSR1.Classes.ClassDeclaration.MissingNamespace">
+        <exclude-pattern>workaround.php</exclude-pattern>
+        <exclude-pattern>class/mysql.class.php</exclude-pattern>
+        <exclude-pattern>class/shop.class.php</exclude-pattern>
+    </rule>
+
 </ruleset>
