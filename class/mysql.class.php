@@ -1,11 +1,11 @@
 <?php
 
-class db
+class Mysql
 {
     /**
      * 設定成員
      */
-    private $_config = array();
+    private $_config = [];
     /**
      * 取得資料的型式
      * 在db::init()方法中設定
@@ -23,6 +23,7 @@ class db
      * debug模式
      */
     private $_debug;
+
     /**
      * 建構函式
      * 傳入參數為boolean，如為True則會開啟DEBUG模式
@@ -31,7 +32,7 @@ class db
     {
         $this->_debug = $DEBUG_MODE;
 
-        $this->_config['HOST'] =DB_HOST;
+        $this->_config['HOST'] = DB_HOST;
         $this->_config['USER'] = DB_USER;
         $this->_config['PASS'] = DB_PASS;
         $this->_config['DATABASE'] = DB_NAME;
@@ -42,6 +43,7 @@ class db
         }
         $this->init();
     }
+
     /**
      * 解構方法
      */
@@ -49,6 +51,7 @@ class db
     {
         $this->_disconnect();
     }
+
     /**
      * 連線方法
      */
@@ -60,6 +63,7 @@ class db
             $this->_config['PASS']
         ) or die('Error with MySQL connection');
     }
+
     /**
      * 斷線方法
      */
@@ -67,6 +71,7 @@ class db
     {
         mysql_close($this->_connection);
     }
+
     /**
      * 初始化方法
      */
@@ -76,6 +81,7 @@ class db
         mysql_query("SET NAMES '" . $this->_config['CHARSET'] . "'");
         mysql_select_db($this->_config['DATABASE'], $this->_connection) or die('Error with MySQL db select');
     }
+
     /**
      * 基本查詢方法
      * 需傳入一SQL語法
@@ -85,7 +91,7 @@ class db
     {
         if (!$resource = mysql_query($SQL, $this->_connection)) {
             if ($this->_debug) {
-                echo mysql_errno().": ".mysql_error()."<BR>";
+                echo mysql_errno() . ": " . mysql_error() . "<BR>";
                 die("MySQL Query Error");
             } else {
                 die("Error");
@@ -94,6 +100,7 @@ class db
         $this->_resource = $resource;
         return $resource;
     }
+
     /**
      * 查詢方法-ALL
      * 需傳入一SELECT的SQL語法
@@ -113,6 +120,7 @@ class db
         }
         return $data;
     }
+
     /**
      * 查詢方法-ROW
      * 需傳入一SELECT的SQL語法
@@ -123,6 +131,7 @@ class db
         $this->query($SQL);
         return mysql_fetch_array($this->_resource, $this->_fetch_mode);
     }
+
     /**
      * 查詢方法-COL
      * 需傳入一SELECT的SQL語法
@@ -133,6 +142,7 @@ class db
         $this->query($SQL);
         return mysql_fetch_array($this->_resource, $this->_fetch_mode);
     }
+
     /**
      * 查詢方法-One
      * 需傳入一SELECT的SQL語法
@@ -144,24 +154,27 @@ class db
         $row = mysql_fetch_array($this->_resource, $this->_fetch_mode);
         return array_pop($row);
     }
+
     /**
      * 查詢有幾筆資料
-    */
-    public function get_num_rows()
+     */
+    public function getNumRows()
     {
         if ($this->_resource === null) {
             return null;
         }
         return mysql_num_rows($this->_resource);
     }
+
     /**
      * 查詢前一個INSERT動作的ID
      */
-    public function get_insert_id($table)
+    public function getInsertId($table)
     {
         $status = $this->row("SHOW TABLE STATUS WHERE `NAME` = '" . $table . "'");
         return $status['Auto_increment'];
     }
+
     /**
      * escape方法
      * 傳入一字串，回傳一加入escape字元的字串
@@ -170,6 +183,7 @@ class db
     {
         return mysql_real_escape_string($str);
     }
+
     /**
      * 自動產生Insert SQL方法
      * $data為資料，格式如下
@@ -189,9 +203,9 @@ class db
         $SQLColumn = '';
         $SQLValue = '';
         foreach ($data as $column => $value) {
-            $SQLColumn .= ($SQLColumn == '')? ' ': ', ';
+            $SQLColumn .= ($SQLColumn == '') ? ' ' : ', ';
             $SQLColumn .= "`$column`";
-            $SQLValue .= ($SQLValue == '')? ' ': ', ';
+            $SQLValue .= ($SQLValue == '') ? ' ' : ', ';
             if ($value == null) {
                 $SQLValue .= "NULL";
             } else {
@@ -201,6 +215,7 @@ class db
         $this->query("INSERT INTO `$table` ($SQLColumn) VALUES ($SQLValue)");
         return true;
     }
+
     /**
      * 自動產生Delete SQL方法
      * $where的格式請參考_createWhere
@@ -217,6 +232,7 @@ class db
         $this->query("DELETE FROM `" . $table . "` WHERE " . $this->_createWhere($where));
         return true;
     }
+
     /**
      * 自動產生Update SQL方法
      * $where的格式請參考_createWhere
@@ -237,7 +253,7 @@ class db
         }
         $updateSQL = '';
         foreach ($update as $dataColumn => $dataValue) {
-            $updateSQL .= ($updateSQL == '')? '' : ', ';
+            $updateSQL .= ($updateSQL == '') ? '' : ', ';
             if ($dataValue == null) {
                 $updateSQL .= "`$dataColumn` = NULL";
             } else {
@@ -247,6 +263,7 @@ class db
         $this->query("UPDATE `" . $table . "` SET $updateSQL WHERE " . $this->_createWhere($where));
         return true;
     }
+
     /**
      *  產生where SQL方法
      *  $where的格式範例：
@@ -260,12 +277,12 @@ class db
     private function _createWhere($where)
     {
         $result = '';
-        if (is_array($where) && count($where)>=2) {
+        if (is_array($where) && count($where) >= 2) {
             $count = count($where[0]);
             $conditions = $where[0];
             $field = $where[1];
             $context = $where[2];
-            for ($i=0; $i<$count; $i++) {
+            for ($i = 0; $i < $count; $i++) {
                 if (is_null($conditions[$i])) {
                     $result .= "`$field[$i]` = '$context[$i]' ";
                 } else {

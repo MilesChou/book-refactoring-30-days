@@ -1,27 +1,27 @@
 <?php
 
-class shop
+class Shop
 {
     /**
      * $_CLOUMN
      * 可接受查詢的欄位
      */
-    private $_CLOUMN = array('id', 'category', 'title', 'content', 'price', 'store', 'sale', 'click');
+    private $_CLOUMN = ['id', 'category', 'title', 'content', 'price', 'store', 'sale', 'click'];
     /**
      * $_LIKE_QUERY
      * 可接受模糊比對的欄位
      */
-    private $_LIKE_QUERY = array('title', 'content');
+    private $_LIKE_QUERY = ['title', 'content'];
     /**
      * $_NUM_QUERY
      * 可接受數字比對的欄位
      */
-    private $_NUM_QUERY = array('id', 'category', 'price', 'store', 'sale', 'click');
+    private $_NUM_QUERY = ['id', 'category', 'price', 'store', 'sale', 'click'];
     /**
      * $_QUERY_OP
      * 可接受的比對運算元
      */
-    private $_QUERY_OP = array('like' => 'LIKE',
+    private $_QUERY_OP = ['like' => 'LIKE',
         'lt' => '<',
         'le' => '<=',
         'gt' => '>',
@@ -29,7 +29,7 @@ class shop
         'ne' => '<>',
         'eq' => '=',
         'sne' => '<>',
-        'seq' => '=');
+        'seq' => '='];
     /**
      * $_debug
      * 除錯模式
@@ -45,6 +45,7 @@ class shop
      * 資料
      */
     private $data = null;
+
     /**
      * shop::__construct(boolen $DEBUG_MODE)
      * 建構方法
@@ -55,16 +56,18 @@ class shop
     {
         $this->_debug = $DEBUG_MODE;
         if ($this->_db == null) {
-            $this->_db = new db($this->_debug);
+            $this->_db = new Mysql($this->_debug);
         }
         return;
     }
+
     /**
      * 解構方法
      */
     public function __destruct()
     {
     }
+
     /**
      * 取得所有項目的方法
      */
@@ -73,6 +76,7 @@ class shop
         $SQL = 'SELECT `p`.*, `c`.`title` AS `ctitle` FROM `product` AS `p` JOIN `product_category` AS `c` ON `p`.`category` = `c`.`id` ORDER BY `p`.`id`';
         return $this->_db->all($SQL);
     }
+
     /**
      * shop::one(int $id)
      * 取得單一項目的方法
@@ -80,11 +84,12 @@ class shop
      */
     public function one($id)
     {
-        $data = array('query'=>'id', 'op'=>'eq', 'val'=>$id);
+        $data = ['query' => 'id', 'op' => 'eq', 'val' => $id];
         $one = $this->query($data);
-        $this->_db->update(array(array(null),array('id'),array($id)), array('click'=> ++$one[0]['click']), 'product');
+        $this->_db->update([[null], ['id'], [$id]], ['click' => ++$one[0]['click']], 'product');
         return $one[0];
     }
+
     /**
      * shop::query(array $data)
      * 處理分類的方法
@@ -112,8 +117,8 @@ class shop
             $where = 'WHERE `p`.`' . $data['query'] . '` ' . $this->_QUERY_OP[$data['op']] . ' \'' . $this->_db->escape($data['val']) . '\'';
         }
         if (isset($data['per'])) {
-            $page = (isset($data['page']))? $data['page']: 1;
-            $limit = 'LIMIT ' . (($page-1) * $data['per']) . ' , ' . $data['per'];
+            $page = (isset($data['page'])) ? $data['page'] : 1;
+            $limit = 'LIMIT ' . (($page - 1) * $data['per']) . ' , ' . $data['per'];
         }
         if (isset($data['order'])) {
             $order = $data['order'];
@@ -126,45 +131,48 @@ class shop
         $SQL = 'SELECT `p`.*, `c`.`title` AS `ctitle` ' . $column . ' FROM `product` AS `p` JOIN `product_category` AS `c` ON `p`.`category` = `c`.`id` ' . $where . ' ORDER BY ' . $order . ' ' . $limit;
         return $this->_db->all($SQL);
     }
+
     /**
      * shop::top(int $per)
      */
     public function top($per)
     {
-        $data['popular_top'] = $this->query(array(
+        $data['popular_top'] = $this->query([
             'per' => $per,
-            'order'=> '`p`.`click` DESC'
-        ));
-        $data['popular_bot'] = $this->query(array(
+            'order' => '`p`.`click` DESC'
+        ]);
+        $data['popular_bot'] = $this->query([
             'per' => $per,
-            'order'=> '`p`.`click` ASC'
-        ));
-        $data['sale_top'] = $this->query(array(
+            'order' => '`p`.`click` ASC'
+        ]);
+        $data['sale_top'] = $this->query([
             'per' => $per,
-            'order'=> '`p`.`sale` DESC'
-        ));
-        $data['sale_bot'] = $this->query(array(
+            'order' => '`p`.`sale` DESC'
+        ]);
+        $data['sale_bot'] = $this->query([
             'per' => $per,
-            'order'=> '`p`.`sale` ASC'
-        ));
-        $data['store'] = $this->query(array(
+            'order' => '`p`.`sale` ASC'
+        ]);
+        $data['store'] = $this->query([
             'per' => $per,
-            'order'=> '`p`.`store` ASC'
-        ));
-        $data['profit'] = $this->query(array(
-            'column' => array('(`p`.`price` / `p`.`cost`) AS `profit`'),
+            'order' => '`p`.`store` ASC'
+        ]);
+        $data['profit'] = $this->query([
+            'column' => ['(`p`.`price` / `p`.`cost`) AS `profit`'],
             'per' => $per,
-            'order'=> '`profit` DESC'
-        ));
+            'order' => '`profit` DESC'
+        ]);
         return $data;
     }
+
     public function calc()
     {
-        $calc = array();
+        $calc = [];
         $SQL = 'SELECT sum(`total`) FROM `order` WHERE `_checkout` = 1';
         $calc['sale'] = $this->_db->one($SQL);
         return $calc;
     }
+
     /**
      * shop::checkQuery(array $data)
      * 查詢資料驗證
@@ -197,15 +205,16 @@ class shop
         }
         return true;
     }
+
     /**
      * shop::cart(array $data)
      * 處理購物車的方法
      * 參數$data = array('op'=>{處理事件})
      */
-    public function shop_action($op, $data = null, $id = null)
+    public function shopAction($op, $data = null, $id = null)
     {
         if (!isset($_SESSION['cart'])) {
-            $_SESSION['cart'] = array();
+            $_SESSION['cart'] = [];
         }
         switch ($op) {
             case 'view':
@@ -215,7 +224,7 @@ class shop
                     if (!preg_match("/(\..*)$/", $data['pic'], $match)) {
                         die('上傳檔案錯誤');
                     }
-                    $data['pic'] = $this->_db->get_insert_id('product') . $match[1];
+                    $data['pic'] = $this->_db->getInsertId('product') . $match[1];
                     if (!move_uploaded_file($_FILES['pic']['tmp_name'], 'img/' . $data['pic'])) {
                         die('檔案移動錯誤');
                     }
@@ -237,100 +246,104 @@ class shop
                 } else {
                     $data['pic'] = $one['pic'];
                 }
-                return $this->_db->update(array(array(null),array('id'),array($id)), $data, 'product');
+                return $this->_db->update([[null], ['id'], [$id]], $data, 'product');
             case 'del':
-                return $this->_db->delete(array(array(null),array('id'),array($id)), $data, 'product');
+                return $this->_db->delete([[null], ['id'], [$id]], $data, 'product');
             case 'cadd':
                 die();
-                return $this->_db->delete(array(array(null),array('id'),array($id)), $data, 'product_category');
+                return $this->_db->delete([[null], ['id'], [$id]], $data, 'product_category');
                 break;
             case 'cupd':
-                return $this->_db->update(array(array(null),array('id'),array($id)), $data, 'product_category');
+                return $this->_db->update([[null], ['id'], [$id]], $data, 'product_category');
                 break;
             case 'cdel':
-                return $this->_db->delete(array(array(null),array('id'),array($id)), $data, 'product_category');
+                return $this->_db->delete([[null], ['id'], [$id]], $data, 'product_category');
                 break;
         }
         $cart_data['cart'] = $_SESSION['cart'];
-        $cart_data['total'] = $this->_cart_total($_SESSION['cart']);
+        $cart_data['total'] = $this->cartTotal($_SESSION['cart']);
         return $cart_data;
     }
+
     /**
      * shop::all_category()
      * 取得所有分類的方法
      */
-    public function all_category()
+    public function allCategory()
     {
         $SQL = 'SELECT * FROM `product_category` AS `c` ORDER BY `c`.`id`';
         return $this->_db->all($SQL);
     }
+
     /**
      * shop::one_category(int $id)
      * 取得單一項目的方法
      * 參數：$id為指定產品資料表的id欄位值
      */
-    public function one_category($id)
+    public function oneCategory($id)
     {
         $SQL = 'SELECT * FROM `product_category` AS `c` WHERE `id` = ' . $id;
         return $this->_db->row($SQL);
     }
+
     /**
      * shop::cart_action(string $op, array $data)
      * 處理購物車的方法
      */
-    public function cart_action($op, $data = null)
+    public function cartAction($op, $data = null)
     {
-        $cart_data = array();
+        $cart_data = [];
         if (!isset($_SESSION['cart'])) {
-            $_SESSION['cart'] = array();
+            $_SESSION['cart'] = [];
         }
         switch ($op) {
             case 'view':
                 $cart_data['cart'] = $_SESSION['cart'];
-                $cart_data['total'] = $this->_cart_total($_SESSION['cart']);
+                $cart_data['total'] = $this->cartTotal($_SESSION['cart']);
                 break;
             case 'add':
-                $data['amount'] = (isset($_SESSION['cart'][$data['id']])) ? $_SESSION['cart'][$data['id']]['amount'] + 1: 1;
+                $data['amount'] = (isset($_SESSION['cart'][$data['id']])) ? $_SESSION['cart'][$data['id']]['amount'] + 1 : 1;
                 $_SESSION['cart'][$data['id']] = $data;
-                echo $this->show_alert('已加入購物車', 'index.php?act=cart&op=view');
+                echo $this->showAlert('已加入購物車', 'index.php?act=cart&op=view');
                 $cart_data['cart'] = $_SESSION['cart'];
-                $cart_data['total'] = $this->_cart_total($_SESSION['cart']);
+                $cart_data['total'] = $this->cartTotal($_SESSION['cart']);
                 break;
             case 'upd':
                 $_SESSION['cart'][$data['id']] = $data;
-                echo $this->show_alert('項目已更新', 'index.php?act=cart&op=view');
+                echo $this->showAlert('項目已更新', 'index.php?act=cart&op=view');
                 $cart_data['cart'] = $_SESSION['cart'];
-                $cart_data['total'] = $this->_cart_total($_SESSION['cart']);
+                $cart_data['total'] = $this->cartTotal($_SESSION['cart']);
                 break;
             case 'del':
                 unset($_SESSION['cart'][$data['id']]);
-                echo $this->show_alert('項目已刪除', 'index.php?act=cart&op=view');
+                echo $this->showAlert('項目已刪除', 'index.php?act=cart&op=view');
                 $cart_data['cart'] = $_SESSION['cart'];
-                $cart_data['total'] = $this->_cart_total($_SESSION['cart']);
+                $cart_data['total'] = $this->cartTotal($_SESSION['cart']);
                 break;
             case 'submit':
-                $this->_cart_submit($data);
-                echo $this->show_alert('訂單已送出', null);
+                $this->cartSubmit($data);
+                echo $this->showAlert('訂單已送出', null);
                 session_destroy();
                 break;
             case 'query':
-                $result = $this->order_action($op, $data);
-                $cart_data['cart'] = $this->_analysis_order($result['data']);
+                $result = $this->orderAction($op, $data);
+                $cart_data['cart'] = $this->analysisOrder($result['data']);
                 $cart_data['total'] = $result['total'];
                 $cart_data['user'] = $result;
                 break;
             case 'clear':
                 session_destroy();
-                echo $this->show_alert('訂單已清除', 'index.php?act=cart&op=view');
+                echo $this->showAlert('訂單已清除', 'index.php?act=cart&op=view');
                 break;
         }
         return $cart_data;
     }
+
     /**
      * shop::_cart_total(array $data)
      * 購物車計算總合的方法
      */
-    private function _cart_total($data)
+    private function cartTotal($data)
     {
         $total = 0;
         foreach ($data as $value) {
@@ -338,26 +351,28 @@ class shop
         }
         return $total;
     }
+
     /**
      * shop::_cart_submit(array $data)
      * 購物車提交的方法
      */
-    private function _cart_submit($data)
+    private function cartSubmit($data)
     {
-        $data['total'] = $this->_cart_total($_SESSION['cart']);
+        $data['total'] = $this->cartTotal($_SESSION['cart']);
         foreach ($_SESSION['cart'] as $value) {
-            $data['data'] .= ($data['data']) ?'|' . $value['id'] . ':' . $value['amount'] :$value['id'] . ':' . $value['amount'];
+            $data['data'] .= ($data['data']) ? '|' . $value['id'] . ':' . $value['amount'] : $value['id'] . ':' . $value['amount'];
         }
         if ($this->_db->insert($data, 'order') === false) {
-            $this->show_alert('訂單送出失敗！請返回操作！', BACK);
+            $this->showAlert('訂單送出失敗！請返回操作！', BACK);
         }
         return;
     }
+
     /**
      * shop::show_alert(string $msg, string $url)
      * 顯示訊息的方法
      */
-    public function show_alert($msg = null, $url = null)
+    public function showAlert($msg = null, $url = null)
     {
         if ($msg != null) {
             $msg = 'alert(\'' . $msg . '\');';
@@ -374,15 +389,16 @@ class shop
         }
         return '<script>' . $msg . $url . '</script>';
     }
+
     /**
      * shop::order_action(string $op, array $data)
      * 處理購物車的方法
      */
-    public function order_action($op, $data = null)
+    public function orderAction($op, $data = null)
     {
-        
+
         if (!isset($_SESSION['cart'])) {
-            $_SESSION['cart'] = array();
+            $_SESSION['cart'] = [];
         }
         switch ($op) {
             case 'view':
@@ -390,22 +406,22 @@ class shop
                 return $this->_db->all($SQL);
                 break;
             case 'info':
-                $SQL = 'SELECT * FROM `order` WHERE `id` = '. $data['id'];
+                $SQL = 'SELECT * FROM `order` WHERE `id` = ' . $data['id'];
                 $result = $this->_db->row($SQL);
-                $result['data'] = $this->_analysis_order($result['data']);
+                $result['data'] = $this->analysisOrder($result['data']);
                 return $result;
                 break;
             case 'upd':
                 $_SESSION['cart'][$data['id']] = $data;
-                echo $this->show_alert('項目已更新', 'index.php?act=cart&op=view');
+                echo $this->showAlert('項目已更新', 'index.php?act=cart&op=view');
                 break;
             case 'del':
                 unset($_SESSION['cart'][$data['id']]);
-                echo $this->show_alert('項目已刪除', 'index.php?act=cart&op=view');
+                echo $this->showAlert('項目已刪除', 'index.php?act=cart&op=view');
                 break;
             case 'submit':
-                $this->_cart_submit($data);
-                echo $this->show_alert('訂單已送出', 'index.php');
+                $this->cartSubmit($data);
+                echo $this->showAlert('訂單已送出', 'index.php');
                 session_destroy();
                 break;
             case 'query':
@@ -418,18 +434,19 @@ class shop
                 break;
             case 'clear':
                 session_destroy();
-                echo $this->show_alert('訂單已清除', 'index.php?act=cart&op=view');
+                echo $this->showAlert('訂單已清除', 'index.php?act=cart&op=view');
                 break;
         }
         return;
     }
+
     /**
      * shop::_analysis_order(string $op, array $data)
      * 購物車訂單分析
      */
-    private function _analysis_order($data)
+    private function analysisOrder($data)
     {
-        $result = array();
+        $result = [];
         foreach (explode("|", $data) as $row) {
             $order = explode(":", $row);
             $SQL = 'SELECT `p`.*, `c`.`title` AS `ctitle` FROM `product` AS `p` JOIN `product_category` AS `c` ON `p`.`category` = `c`.`id` WHERE `p`.`id` = ' . $order[0];
