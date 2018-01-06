@@ -26,6 +26,7 @@
             "App\\": "app/"
         },
         "files": [
+            "class/Smarty/Smarty.class.php",
             "class/mysql.class.php",
             "class/shop.class.php",
             "workaround.php"
