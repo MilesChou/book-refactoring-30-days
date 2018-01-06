@@ -37,6 +37,7 @@
 * [Day 19 - 整合 CI](/docs/day19.md)
 * [Day 20 - 導入驗收測試（1）](/docs/day20.md)
 * [Day 21 - 導入驗收測試（2）](/docs/day21.md)
+* [Day 22 - 準備工作的簡短回顧（1）](/docs/day22.md)
 
 ## 誌謝
 
