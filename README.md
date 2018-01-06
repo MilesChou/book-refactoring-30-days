@@ -37,8 +37,8 @@
 * [Day 19 - 整合 CI](/docs/day19.md)
 * [Day 20 - 導入驗收測試（1）](/docs/day20.md)
 * [Day 21 - 導入驗收測試（2）](/docs/day21.md)
-* [Day 22 - 準備工作的簡短回顧（1）](/docs/day22.md)
-* [Day 23 - 準備工作的簡短回顧（2）](/docs/day23.md)
+* [Day 22 - 準備工作的簡短回顧](/docs/day22.md)
+* [Day 23 - 調整程式碼風格（Coding Style）](/docs/day23.md)
 
 ## 誌謝
 
