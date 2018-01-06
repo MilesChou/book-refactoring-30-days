@@ -19,19 +19,6 @@ require_once __DIR__ . '/workaround.php';
 	}
 
 	/**
-	 * 定義其他目錄
-	 */
-    defined('CLASS_PATH') or define('CLASS_PATH', base_path('/class/'));
-
-//	$include_path[] = get_include_path();
-//	$include_path[] = CLASS_PATH;
-//	set_include_path(join(PATH_SEPARATOR, $include_path));
-	
-//	function __autoload($class_name) {
-//		$class = str_replace('_','/',$class_name);
-//		require_once $class . '.php';
-//	}
-	/**
 	 * 定義資料庫常數
 	 */
 	defined('DB_CHARSET') or define('DB_CHARSET', config('database.connections.mysql.charset'));
@@ -43,7 +30,6 @@ require_once __DIR__ . '/workaround.php';
 	/**
 	 * 設定樣版
 	 */
-	require_once CLASS_PATH . 'Smarty/Smarty.class.php';
 	$tpl = new Smarty;
 	$tpl->template_dir = base_path('/templates/');
 	$tpl->compile_dir = base_path('/templates/compile/');
@@ -53,11 +39,6 @@ require_once __DIR__ . '/workaround.php';
 	$tpl->auto_literal = False;
 	$tpl->left_delimiter = '<%';
 	$tpl->right_delimiter = '%>';
-
-	/**
-	 * 引用資料庫
-	 */
-	require_once CLASS_PATH . 'mysql.class.php';
 
 	/**
 	 * 定義商品一頁幾個項目
