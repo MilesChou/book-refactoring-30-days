@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
+    public function login()
+    {
+        return view('admin.login');
+    }
+
     public function index(Request $request, Shop $shop, \Smarty $tpl)
     {
         ob_start();
@@ -18,10 +23,6 @@ class AdminController extends Controller
 
         // 依 $_GET['act'] 決定要做何種處理
         switch ($_GET['act']) {
-            // 登入頁面
-            case 'login':
-                $tpl->assign('admin_page', 'admin_login.html');
-                break;
             // 檢查頁面
             case 'check':
                 if (!isset($_POST['username']) || !isset($_POST['password'])) {
@@ -37,7 +38,7 @@ class AdminController extends Controller
             // 產品管理
             case 'shop':
                 if (!isset($_SESSION['login']) && !DEBUG_MODE) {
-                    die($shop->showAlert('請先登入！', 'admin.php?act=login'));
+                    die($shop->showAlert('請先登入！', '/admin/login'));
                 }
                 if (!isset($_GET['op'])) {
                     $_GET['op'] = 'view';
@@ -193,7 +194,7 @@ class AdminController extends Controller
             // 訂單管理
             case 'order':
                 if (!isset($_SESSION['login']) && !DEBUG_MODE) {
-                    die($shop->showAlert('請先登入！', 'admin.php?act=login'));
+                    die($shop->showAlert('請先登入！', '/admin/login'));
                 }
                 // 檢查傳入值是否有設定
                 if (!isset($_GET['op'])) {
@@ -249,7 +250,7 @@ class AdminController extends Controller
             case 'main':
             default:
                 if (!isset($_SESSION['login']) && !DEBUG_MODE) {
-                    die($shop->showAlert('請先登入！', 'admin.php?act=login'));
+                    die($shop->showAlert('請先登入！', '/admin/login'));
                 }
                 // 取得所有資料
                 $tpl->assign('top', $shop->top(PER_TOP_LIST));

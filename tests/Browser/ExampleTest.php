@@ -84,4 +84,17 @@ class ExampleTest extends DuskTestCase
                 ->assertSee('訂單列表');
         });
     }
+
+    /**
+     * @test
+     */
+    public function shouldBeOkWhenSeeAdminLoginPage()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/admin/login')
+                ->assertSee('管理員登入')
+                ->assertSee('帳號')
+                ->assertSee('密碼');
+        });
+    }
 }
