@@ -39,8 +39,11 @@ before_script:
 
 script:
 - php vendor/bin/phpcs
-- php vendor/bin/phpunit
+- php vendor/bin/phpunit --coverage-clover=coverage.xml
 - php artisan dusk
+
+after_success:
+- bash <(curl -s https://codecov.io/bash)
 
 cache:
   directories:
