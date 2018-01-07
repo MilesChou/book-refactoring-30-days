@@ -35,7 +35,7 @@ Route::get('/admin.php', function () {
             }
             break;
         // 產品管理
-        case 'Shop':
+        case 'shop':
             if (!isset($_SESSION['login']) && !DEBUG_MODE) {
                 die($shop->showAlert('請先登入！', 'admin.php?act=login'));
             }
@@ -260,7 +260,7 @@ Route::get('/admin.php', function () {
     // 主頁面的子樣板：admin.html
     $tpl->assign('tplContent', 'admin.html');
 
-    // 主樣版：index.html
+    // 主樣版：index.blade.php
     $tpl->display('index.html');
 
     return ob_get_clean();
@@ -402,22 +402,22 @@ Route::get('/', function () {
         // 預設頁面/主頁面
         case 'main':
         default:
-            // 取得分類資料
-            $tpl->assign('all_category', $shop->allCategory());
-            // 取得所有資料
-            $data = $shop->all();
-            $tpl->assign('all', $data);
-            // $_GET['id'] 沒有設定的話 預設值為all的第一個;
+            ob_get_clean();
+
+            $data = [
+                'all' => $shop->all(),
+                'all_category' => $shop->allCategory(),
+            ];
+
             if (isset($_GET['id'])) {
                 // 查詢沒有東西的話 會設定為Null
                 if (!$one = $shop->one($_GET['id'])) {
                     die('查無資料');
                 }
-                $tpl->assign('one', $one);
+                $data['one'] = $one;
             }
-            // 主頁面的子樣板：shop.html
-            $tpl->assign('tplContent', 'shop.html');
-            break;
+
+            return view('shop.index', $data);
     }
     // 主樣版：index.html
     $tpl->display('index.html');
