@@ -283,8 +283,7 @@ Route::get('/', function () {
     // 依 $_GET['act'] 決定要做何種處理
     switch ($_GET['act']) {
         case 'contact':
-            $tpl->assign('tplContent', 'contact.html');
-            break;
+            return view('shop.contact');
         // 條件查詢產品資料
         case 'query':
             // 檢查傳入值是否有設定
