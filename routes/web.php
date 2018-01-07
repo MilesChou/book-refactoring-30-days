@@ -293,33 +293,24 @@ Route::get('/', function () {
                 die('資料有誤！');
             }
 
-            // 設定查詢資料
-            $data = [
-                'query' => $_GET['query'],
-                'op' => $_GET['opera'],
-                'val' => $_GET['val']
-            ];
-
-            // 取得分類資料
-            $tpl->assign('all_category', $shop->allCategory());
-
-            // 取得查詢結果
-            $data = $shop->query($data);
-
-            $tpl->assign('all', $data);
-            // $_GET['id'] 有設定的話，即會在樣版的最上面顯示;
             if (isset($_GET['id'])) {
                 // 查詢沒有東西的話 會設定為Null
                 if (!$one = $shop->one($_GET['id'])) {
-                    $one = null;
+                    die('查無資料');
                 }
-                // 將查詢結果傳到樣版的$one變數
-                $tpl->assign('one', $one);
+                $data['one'] = $one;
             }
-            // 查詢結果的子樣板：shop_view.html
-            $tpl->assign('tplContent', 'shop.html');
 
-            break;
+            $data = [
+                'all' => $shop->query([
+                    'query' => $_GET['query'],
+                    'op' => $_GET['opera'],
+                    'val' => $_GET['val']
+                ]),
+                'all_category' => $shop->allCategory(),
+            ];
+
+            return view('shop.index', $data);
         // 購物車處理
         case 'cart':
             // 檢查傳入值是否有設定
