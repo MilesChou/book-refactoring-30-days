@@ -41,7 +41,7 @@ class InitDatabase extends Migration
         });
 
         // TODO: 未來移至 Seeder
-        DB::table('product_category', [
+        DB::table('product_category')->insert([
             'id' => 0,
             'title' => '未分類',
         ]);

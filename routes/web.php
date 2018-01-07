@@ -35,7 +35,7 @@ Route::get('/admin.php', function () {
             }
             break;
         // 產品管理
-        case 'Shop':
+        case 'shop':
             if (!isset($_SESSION['login']) && !DEBUG_MODE) {
                 die($shop->showAlert('請先登入！', 'admin.php?act=login'));
             }
@@ -260,7 +260,7 @@ Route::get('/admin.php', function () {
     // 主頁面的子樣板：admin.html
     $tpl->assign('tplContent', 'admin.html');
 
-    // 主樣版：index.html
+    // 主樣版：index.blade.php
     $tpl->display('index.html');
 
     return ob_get_clean();
@@ -283,8 +283,7 @@ Route::get('/', function () {
     // 依 $_GET['act'] 決定要做何種處理
     switch ($_GET['act']) {
         case 'contact':
-            $tpl->assign('tplContent', 'contact.html');
-            break;
+            return view('shop.contact');
         // 條件查詢產品資料
         case 'query':
             // 檢查傳入值是否有設定
@@ -294,33 +293,24 @@ Route::get('/', function () {
                 die('資料有誤！');
             }
 
-            // 設定查詢資料
-            $data = [
-                'query' => $_GET['query'],
-                'op' => $_GET['opera'],
-                'val' => $_GET['val']
-            ];
-
-            // 取得分類資料
-            $tpl->assign('all_category', $shop->allCategory());
-
-            // 取得查詢結果
-            $data = $shop->query($data);
-
-            $tpl->assign('all', $data);
-            // $_GET['id'] 有設定的話，即會在樣版的最上面顯示;
             if (isset($_GET['id'])) {
                 // 查詢沒有東西的話 會設定為Null
                 if (!$one = $shop->one($_GET['id'])) {
-                    $one = null;
+                    die('查無資料');
                 }
-                // 將查詢結果傳到樣版的$one變數
-                $tpl->assign('one', $one);
+                $data['one'] = $one;
             }
-            // 查詢結果的子樣板：shop_view.html
-            $tpl->assign('tplContent', 'shop.html');
 
-            break;
+            $data = [
+                'all' => $shop->query([
+                    'query' => $_GET['query'],
+                    'op' => $_GET['opera'],
+                    'val' => $_GET['val']
+                ]),
+                'all_category' => $shop->allCategory(),
+            ];
+
+            return view('shop.index', $data);
         // 購物車處理
         case 'cart':
             // 檢查傳入值是否有設定
@@ -402,22 +392,22 @@ Route::get('/', function () {
         // 預設頁面/主頁面
         case 'main':
         default:
-            // 取得分類資料
-            $tpl->assign('all_category', $shop->allCategory());
-            // 取得所有資料
-            $data = $shop->all();
-            $tpl->assign('all', $data);
-            // $_GET['id'] 沒有設定的話 預設值為all的第一個;
+            ob_get_clean();
+
+            $data = [
+                'all' => $shop->all(),
+                'all_category' => $shop->allCategory(),
+            ];
+
             if (isset($_GET['id'])) {
                 // 查詢沒有東西的話 會設定為Null
                 if (!$one = $shop->one($_GET['id'])) {
                     die('查無資料');
                 }
-                $tpl->assign('one', $one);
+                $data['one'] = $one;
             }
-            // 主頁面的子樣板：shop.html
-            $tpl->assign('tplContent', 'shop.html');
-            break;
+
+            return view('shop.index', $data);
     }
     // 主樣版：index.html
     $tpl->display('index.html');
