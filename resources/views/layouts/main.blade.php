@@ -16,12 +16,12 @@
         <title>test</title>
     @endif
 
-    <link href="css/main.css" rel="stylesheet" type="text/css"/>
-    <link href="css/verticalScrollable.css" rel="stylesheet" type="text/css"/>
-    <script language="javascript" src="js/jq/jquery-1.6.min.js"></script>
-    <script language="javascript" src="js/jq/jquery.tools.min.js"></script>
-    <script language="javascript" src="js/jq/jqFunction.js"></script>
-    <script language="javascript" src="js/jq/jquery.corner.js"></script>
+    <link href="/css/main.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/verticalScrollable.css" rel="stylesheet" type="text/css"/>
+    <script language="javascript" src="/js/jq/jquery-1.6.min.js"></script>
+    <script language="javascript" src="/js/jq/jquery.tools.min.js"></script>
+    <script language="javascript" src="/js/jq/jqFunction.js"></script>
+    <script language="javascript" src="/js/jq/jquery.corner.js"></script>
 
 
 </head>
@@ -47,7 +47,7 @@
             @if ($config['debug'])
                 <a href="admin.php">管理員頁面</a> |
             @endif
-                <a href="index.php?act=contact">聯絡我們</a> | <a
+                <a href="/contact">聯絡我們</a> | <a
                     href="index.php?act=cart&amp;op=view">查看購物車</a> | <a href="index.php">回首頁</a>
         </div>
     </div>

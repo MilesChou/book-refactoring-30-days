@@ -42,11 +42,11 @@ class Shop
     private $_db;
 
     /**
-     * @param bool $debug
+     * @param Mysql $mysql
      */
-    public function __construct($debug)
+    public function __construct(Mysql $mysql)
     {
-        $this->_db = new Mysql($debug);
+        $this->_db = $mysql;
     }
 
     /**

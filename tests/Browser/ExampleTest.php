@@ -64,7 +64,7 @@ class ExampleTest extends DuskTestCase
     public function shouldBeOkWhenSeeContactPage()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/?act=contact')
+            $browser->visit('/contact')
                 ->assertSeeLink('檢視較大的地圖');
         });
     }
@@ -82,6 +82,19 @@ class ExampleTest extends DuskTestCase
                 ->assertSee('庫存')
                 ->clickLink('訂單管理')
                 ->assertSee('訂單列表');
+        });
+    }
+
+    /**
+     * @test
+     */
+    public function shouldBeOkWhenSeeAdminLoginPage()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/admin/login')
+                ->assertSee('管理員登入')
+                ->assertSee('帳號')
+                ->assertSee('密碼');
         });
     }
 }

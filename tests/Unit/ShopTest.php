@@ -23,9 +23,9 @@ class ShopTest extends TestCase
      */
     public function smokeTestShop()
     {
-        $shop = new Shop(true);
+        $target = $this->app->make(Shop::class);
 
-        $this->assertInstanceOf(Shop::class, $shop);
+        $this->assertInstanceOf(Shop::class, $target);
     }
 
     /**
@@ -36,7 +36,7 @@ class ShopTest extends TestCase
         /** @var ProductCategory $excepted */
         $excepted = factory(ProductCategory::class)->create();
 
-        $target = new Shop(true);
+        $target = $this->app->make(Shop::class);
 
         $actual = $target->allCategory();
 
@@ -52,7 +52,7 @@ class ShopTest extends TestCase
         /** @var ProductCategory $excepted */
         $excepted = factory(ProductCategory::class)->create();
 
-        $target = new Shop(true);
+        $target = $this->app->make(Shop::class);
 
         $actual = $target->oneCategory($excepted->id);
 
@@ -69,7 +69,7 @@ class ShopTest extends TestCase
         $excepted = factory(Product::class)->create();
         $exceptedClick = $excepted->click + 1;
 
-        $target = new Shop(true);
+        $target = $this->app->make(Shop::class);
 
         $actual = $target->one($excepted->id);
 
