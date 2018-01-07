@@ -12,6 +12,20 @@ class AdminController extends Controller
         return view('admin.login');
     }
 
+    public function postLogin(Request $request, Shop $shop)
+    {
+        $username = $request->get('username');
+        $password = $request->get('password');
+
+        if ($username !== ADMIN_USER || md5($password) !== ADMIN_PASS) {
+            return $shop->showAlert('帳號密碼輸入錯誤', 'BACK');
+        }
+
+        $_SESSION['login'] = true;
+
+        return $shop->showAlert('登入成功', '/admin');
+    }
+
     public function index(Request $request, Shop $shop, \Smarty $tpl)
     {
         $act = $request->query('act', 'main');
@@ -19,18 +33,6 @@ class AdminController extends Controller
         ob_start();
 
         switch ($act) {
-            // 檢查頁面
-            case 'check':
-                if (!isset($_POST['username']) || !isset($_POST['password'])) {
-                    die($shop->showAlert('帳號密碼輸入有誤', 'BACK'));
-                }
-                if ($_POST['username'] != ADMIN_USER || md5($_POST['password']) != ADMIN_PASS) {
-                    die($shop->showAlert('帳號密碼輸入錯誤', 'BACK'));
-                } else {
-                    $_SESSION['login'] = true;
-                    die($shop->showAlert('登入成功', 'admin.php'));
-                }
-                break;
             // 產品管理
             case 'shop':
                 if (!isset($_SESSION['login']) && !DEBUG_MODE) {
