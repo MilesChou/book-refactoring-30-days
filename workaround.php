@@ -54,7 +54,7 @@ if (!function_exists('mysql_num_rows')) {
 }
 
 if (!function_exists('mysql_real_escape_string')) {
-    function mysql_real_escape_string($string, $link)
+    function mysql_real_escape_string($string, $link = null)
     {
         if (null === $link) {
             return mysqli_real_escape_string(Workaround::$mysqli, $string);

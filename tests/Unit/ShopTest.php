@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use App\ategory;
+use App\Product;
 use App\ProductCategory;
 use App\Shop\Shop;
 use Tests\TestCase;
@@ -39,8 +40,7 @@ class ShopTest extends TestCase
 
         $actual = $target->allCategory();
 
-        // FIXME: 因型態不同，先使用 equals
-        $this->assertEquals($excepted->id, $actual[1]['id']);
+        $this->assertSame($excepted->id, $actual[1]['id']);
         $this->assertSame($excepted->title, $actual[1]['title']);
     }
 
@@ -56,8 +56,29 @@ class ShopTest extends TestCase
 
         $actual = $target->oneCategory($excepted->id);
 
-        // FIXME: 因型態不同，先使用 equals
-        $this->assertEquals($excepted->id, $actual['id']);
+        $this->assertSame($excepted->id, $actual['id']);
         $this->assertSame($excepted->title, $actual['title']);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGetOneWhenSeedFactoryCategory()
+    {
+        /** @var Product $excepted */
+        $excepted = factory(Product::class)->create();
+        $exceptedClick = $excepted->click + 1;
+
+        $target = new Shop(true);
+
+        $actual = $target->one($excepted->id);
+
+        $this->assertEquals($excepted->id, $actual['id']);
+        $this->assertEquals($excepted->price, $actual['price']);
+        $this->assertSame($excepted->title, $actual['title']);
+        $this->assertSame($excepted->content, $actual['content']);
+
+        // 確認 click 會加 1
+        $this->assertSame($exceptedClick, $excepted->refresh()->click);
     }
 }

@@ -2,6 +2,10 @@
 
 namespace App\Shop;
 
+use App\Product;
+use App\ProductCategory;
+use Illuminate\Database\Eloquent\Collection;
+
 class Shop
 {
     /**
@@ -61,14 +65,16 @@ class Shop
      * 參數：$id為指定產品資料表的id欄位值
      *
      * @param string $id
-     * @return array
+     * @return Product
      */
-    public function one($id)
+    public function one($id): Product
     {
-        $data = ['query' => 'id', 'op' => 'eq', 'val' => $id];
-        $one = $this->query($data);
-        $this->_db->update([[null], ['id'], [$id]], ['click' => ++$one[0]['click']], 'product');
-        return $one[0];
+        /** @var Product $product */
+        $product = Product::find($id);
+        $product->click++;
+        $product->save();
+
+        return $product;
     }
 
     /**
@@ -255,24 +261,22 @@ class Shop
     /**
      * 取得所有分類的方法
      *
-     * @return array
+     * @return Collection
      */
-    public function allCategory()
+    public function allCategory(): Collection
     {
-        $SQL = 'SELECT * FROM `product_category` AS `c` ORDER BY `c`.`id`';
-        return $this->_db->all($SQL);
+        return ProductCategory::all();
     }
 
     /**
      * 取得單一項目的方法
      *
      * @param int $id 指定產品資料表的 id 欄位值
-     * @return array|null
+     * @return ProductCategory
      */
-    public function oneCategory($id)
+    public function oneCategory($id): ProductCategory
     {
-        $SQL = 'SELECT * FROM `product_category` AS `c` WHERE `id` = ' . $id;
-        return $this->_db->row($SQL);
+        return ProductCategory::find($id);
     }
 
     /**
