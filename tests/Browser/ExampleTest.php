@@ -29,6 +29,18 @@ class ExampleTest extends DuskTestCase
     /**
      * @test
      */
+    public function shouldDontSeeSmartyTagSeeIndexPage()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/')
+                ->assertDontSee('<%')
+                ->assertDontSee('%>');
+        });
+    }
+
+    /**
+     * @test
+     */
     public function shouldBeOkWhenSeeAdminPage()
     {
         $this->browse(function (Browser $browser) {

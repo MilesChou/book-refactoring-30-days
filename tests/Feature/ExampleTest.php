@@ -20,7 +20,18 @@ class ExampleTest extends TestCase
         $response->assertSee('聯絡我們');
         $response->assertSee('查看購物車');
         $response->assertSee('回首頁');
+    }
 
+    /**
+     * @test
+     */
+    public function shouldDontSeeSmartyTagSeeIndexPage()
+    {
+        $response = $this->get('/');
+
+        $response->assertStatus(200);
+        $response->assertDontSee('<%');
+        $response->assertDontSee('%>');
     }
 
     /**
