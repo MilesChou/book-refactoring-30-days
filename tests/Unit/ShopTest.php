@@ -2,16 +2,13 @@
 
 namespace Tests\Unit;
 
-use App\Product;
+use App\ategory;
 use App\ProductCategory;
 use App\Shop\Shop;
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
 class ShopTest extends TestCase
 {
-    use DatabaseMigrations;
-
     /**
      * @test
      */
@@ -33,15 +30,34 @@ class ShopTest extends TestCase
     /**
      * @test
      */
-    public function shouldGetCategoryWhenFactoryCategory()
+    public function shouldGetAllCategoryWhenSeedFactoryCategory()
     {
-        /** @var ProductCategory $category */
-        $category = factory(ProductCategory::class)->create();
+        /** @var ProductCategory $excepted */
+        $excepted = factory(ProductCategory::class)->create();
 
         $target = new Shop(true);
 
         $actual = $target->allCategory();
 
-        $this->assertSame($category->title, $actual[1]['title']);
+        // FIXME: 因型態不同，先使用 equals
+        $this->assertEquals($excepted->id, $actual[1]['id']);
+        $this->assertSame($excepted->title, $actual[1]['title']);
+    }
+
+    /**
+     * @test
+     */
+    public function shouldGetOneCategoryWhenSeedFactoryCategory()
+    {
+        /** @var ProductCategory $excepted */
+        $excepted = factory(ProductCategory::class)->create();
+
+        $target = new Shop(true);
+
+        $actual = $target->oneCategory($excepted->id);
+
+        // FIXME: 因型態不同，先使用 equals
+        $this->assertEquals($excepted->id, $actual['id']);
+        $this->assertSame($excepted->title, $actual['title']);
     }
 }
