@@ -5,25 +5,21 @@ namespace App\Shop;
 class Shop
 {
     /**
-     * $_CLOUMN
      * 可接受查詢的欄位
      */
     private $_CLOUMN = ['id', 'category', 'title', 'content', 'price', 'store', 'sale', 'click'];
 
     /**
-     * $_LIKE_QUERY
      * 可接受模糊比對的欄位
      */
     private $_LIKE_QUERY = ['title', 'content'];
 
     /**
-     * $_NUM_QUERY
      * 可接受數字比對的欄位
      */
     private $_NUM_QUERY = ['id', 'category', 'price', 'store', 'sale', 'click'];
 
     /**
-     * $_QUERY_OP
      * 可接受的比對運算元
      */
     private $_QUERY_OP = ['like' => 'LIKE',
@@ -37,46 +33,22 @@ class Shop
         'seq' => '='];
 
     /**
-     * $_debug
-     * 除錯模式
-     */
-    private $_debug = false;
-
-    /**
-     * $_db
      * 放DB物件的成員
      */
-    private $_db = null;
+    private $_db;
 
     /**
-     * $data
-     * 資料
+     * @param bool $debug
      */
-    private $data = null;
-
-    /**
-     * 建構方法
-     * 可傳入一布林，這會決定之後的使用是否會開啟除錯模式
-     * 建構的同時，會建立DB物件，DB物件使用方法請參考class/mysql.class.php
-     */
-    public function __construct($DEBUG_MODE)
+    public function __construct($debug)
     {
-        $this->_debug = $DEBUG_MODE;
-        if ($this->_db == null) {
-            $this->_db = new Mysql($this->_debug);
-        }
-        return;
-    }
-
-    /**
-     * 解構方法
-     */
-    public function __destruct()
-    {
+        $this->_db = new Mysql($debug);
     }
 
     /**
      * 取得所有項目的方法
+     *
+     * @return array
      */
     public function all()
     {
@@ -85,9 +57,11 @@ class Shop
     }
 
     /**
-     * shop::one(int $id)
      * 取得單一項目的方法
      * 參數：$id為指定產品資料表的id欄位值
+     *
+     * @param string $id
+     * @return array
      */
     public function one($id)
     {
@@ -172,6 +146,9 @@ class Shop
         return $data;
     }
 
+    /**
+     * @return array
+     */
     public function calc()
     {
         $calc = [];
@@ -181,10 +158,10 @@ class Shop
     }
 
     /**
-     * shop::checkQuery(array $data)
      * 查詢資料驗證
-     * 會回傳True或False
-     * 參數$data使用方法與shop::query同
+     *
+     * @param array $data
+     * @return bool
      */
     public function checkQuery($data)
     {
@@ -214,9 +191,12 @@ class Shop
     }
 
     /**
-     * shop::cart(array $data)
      * 處理購物車的方法
-     * 參數$data = array('op'=>{處理事件})
+     *
+     * @param string $op
+     * @param array null $data
+     * @param int $id
+     * @return bool
      */
     public function shopAction($op, $data = null, $id = null)
     {
@@ -273,8 +253,9 @@ class Shop
     }
 
     /**
-     * shop::all_category()
      * 取得所有分類的方法
+     *
+     * @return array
      */
     public function allCategory()
     {
