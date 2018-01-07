@@ -39,6 +39,7 @@
 * [Day 21 - 導入驗收測試（2）](/docs/day21.md)
 * [Day 22 - 準備工作的簡短回顧](/docs/day22.md)
 * [Day 23 - 調整程式碼風格（Coding Style）](/docs/day23.md)
+* [Day 24 - MVC 架構－－Controller & Model](/docs/day24.md)
 
 ## 誌謝
 
