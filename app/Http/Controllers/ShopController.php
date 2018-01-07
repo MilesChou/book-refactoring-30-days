@@ -9,15 +9,11 @@ class ShopController extends Controller
 {
     public function index(Request $request, Shop $shop, \Smarty $tpl)
     {
+        $act = $request->query('act', 'main');
+
         ob_start();
 
-        // $_GET['act'] 如沒有設定的話，預設值為'main'
-        if (!isset($_GET['act'])) {
-            $_GET['act'] = 'main';
-        }
-
-        // 依 $_GET['act'] 決定要做何種處理
-        switch ($_GET['act']) {
+        switch ($act) {
             // 條件查詢產品資料
             case 'query':
                 // 檢查傳入值是否有設定

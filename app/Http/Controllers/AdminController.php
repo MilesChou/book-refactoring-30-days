@@ -14,15 +14,11 @@ class AdminController extends Controller
 
     public function index(Request $request, Shop $shop, \Smarty $tpl)
     {
+        $act = $request->query('act', 'main');
+
         ob_start();
 
-        // $_GET['act'] 如沒有設定的話，預設值為'main'
-        if (!isset($_GET['act'])) {
-            $_GET['act'] = 'main';
-        }
-
-        // 依 $_GET['act'] 決定要做何種處理
-        switch ($_GET['act']) {
+        switch ($act) {
             // 檢查頁面
             case 'check':
                 if (!isset($_POST['username']) || !isset($_POST['password'])) {
