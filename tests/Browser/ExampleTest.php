@@ -2,11 +2,15 @@
 
 namespace Tests\Browser;
 
-use Tests\DuskTestCase;
+use App\ProductCategory;
+use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
+use Tests\DuskTestCase;
 
 class ExampleTest extends DuskTestCase
 {
+    use DatabaseMigrations;
+
     /**
      * @test
      */
@@ -23,6 +27,22 @@ class ExampleTest extends DuskTestCase
                 ->assertSee('統計功能')
                 ->clickLink('查看購物車')
                 ->assertSee('購物清單');
+        });
+    }
+
+    /**
+     * @test
+     */
+    public function shouldSeeNewCategoryWhenCreateNewCategory()
+    {
+        /** @var ProductCategory $category */
+        $category = factory(ProductCategory::class)->create();
+
+        $this->browse(function (Browser $browser) use ($category) {
+            $browser->visit('/')
+                ->assertSee('產品分類')
+                ->assertSee('未分類')
+                ->assertSee($category->title);
         });
     }
 
