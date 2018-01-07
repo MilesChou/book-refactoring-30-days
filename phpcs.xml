@@ -15,7 +15,6 @@
     <file>app</file>
     <file>class</file>
     <file>config</file>
-    <file>config.php</file>
     <file>workaround.php</file>
 
     <!-- Don't check Smarty because it's third-party lib -->

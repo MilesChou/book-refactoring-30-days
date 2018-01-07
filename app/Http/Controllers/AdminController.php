@@ -11,9 +11,6 @@ class AdminController extends Controller
     {
         ob_start();
 
-        // 引用設定檔
-        require base_path('config.php');
-
         // $_GET['act'] 如沒有設定的話，預設值為'main'
         if (!isset($_GET['act'])) {
             $_GET['act'] = 'main';
@@ -30,7 +27,7 @@ class AdminController extends Controller
                 if (!isset($_POST['username']) || !isset($_POST['password'])) {
                     die($shop->showAlert('帳號密碼輸入有誤', 'BACK'));
                 }
-                if ($_POST['username'] != $user || md5($_POST['password']) != $pass) {
+                if ($_POST['username'] != ADMIN_USER || md5($_POST['password']) != ADMIN_PASS) {
                     die($shop->showAlert('帳號密碼輸入錯誤', 'BACK'));
                 } else {
                     $_SESSION['login'] = true;

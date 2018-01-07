@@ -11,9 +11,6 @@ class ShopController extends Controller
     {
         ob_start();
 
-        // 引用設定檔
-        require base_path('config.php');
-
         // $_GET['act'] 如沒有設定的話，預設值為'main'
         if (!isset($_GET['act'])) {
             $_GET['act'] = 'main';
