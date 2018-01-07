@@ -2,6 +2,7 @@
 
 namespace App\Shop;
 
+use App\Product;
 use App\ProductCategory;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -64,14 +65,16 @@ class Shop
      * 參數：$id為指定產品資料表的id欄位值
      *
      * @param string $id
-     * @return array
+     * @return Product
      */
-    public function one($id)
+    public function one($id): Product
     {
-        $data = ['query' => 'id', 'op' => 'eq', 'val' => $id];
-        $one = $this->query($data);
-        $this->_db->update([[null], ['id'], [$id]], ['click' => ++$one[0]['click']], 'product');
-        return $one[0];
+        /** @var Product $product */
+        $product = Product::find($id);
+        $product->click++;
+        $product->save();
+
+        return $product;
     }
 
     /**
