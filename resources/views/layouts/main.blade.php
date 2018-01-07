@@ -16,12 +16,12 @@
         <title>test</title>
     @endif
 
-    <link href="css/main.css" rel="stylesheet" type="text/css"/>
-    <link href="css/verticalScrollable.css" rel="stylesheet" type="text/css"/>
-    <script language="javascript" src="js/jq/jquery-1.6.min.js"></script>
-    <script language="javascript" src="js/jq/jquery.tools.min.js"></script>
-    <script language="javascript" src="js/jq/jqFunction.js"></script>
-    <script language="javascript" src="js/jq/jquery.corner.js"></script>
+    <link href="/css/main.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/verticalScrollable.css" rel="stylesheet" type="text/css"/>
+    <script language="javascript" src="/js/jq/jquery-1.6.min.js"></script>
+    <script language="javascript" src="/js/jq/jquery.tools.min.js"></script>
+    <script language="javascript" src="/js/jq/jqFunction.js"></script>
+    <script language="javascript" src="/js/jq/jquery.corner.js"></script>
 
 
 </head>
