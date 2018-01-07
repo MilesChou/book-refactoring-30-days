@@ -2,6 +2,9 @@
 
 namespace App\Shop;
 
+use App\ProductCategory;
+use Illuminate\Database\Eloquent\Collection;
+
 class Shop
 {
     /**
@@ -255,24 +258,22 @@ class Shop
     /**
      * 取得所有分類的方法
      *
-     * @return array
+     * @return Collection
      */
-    public function allCategory()
+    public function allCategory(): Collection
     {
-        $SQL = 'SELECT * FROM `product_category` AS `c` ORDER BY `c`.`id`';
-        return $this->_db->all($SQL);
+        return ProductCategory::all();
     }
 
     /**
      * 取得單一項目的方法
      *
      * @param int $id 指定產品資料表的 id 欄位值
-     * @return array|null
+     * @return ProductCategory
      */
-    public function oneCategory($id)
+    public function oneCategory($id): ProductCategory
     {
-        $SQL = 'SELECT * FROM `product_category` AS `c` WHERE `id` = ' . $id;
-        return $this->_db->row($SQL);
+        return ProductCategory::find($id);
     }
 
     /**
