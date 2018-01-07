@@ -43,6 +43,7 @@
 * [Day 25 - MVC 架構－－View](/docs/day25.md)
 * [Day 26 - 建立 Eloquent](/docs/day26.md)
 * [Day 27 - 整合 Eloquent](/docs/day27.md)
+* [Day 28 - 重構 Controller](/docs/day28.md)
 
 ## 誌謝
 
