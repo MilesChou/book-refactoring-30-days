@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    public function index(Request $request, Shop $shop)
+    public function index(Request $request, Shop $shop, \Smarty $tpl)
     {
         ob_start();
 
