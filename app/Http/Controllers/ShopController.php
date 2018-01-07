@@ -7,15 +7,12 @@ use Illuminate\Http\Request;
 
 class ShopController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request, Shop $shop)
     {
         ob_start();
 
         // 引用設定檔
         require base_path('config.php');
-
-        // 建立shop物件
-        $shop = new Shop(DEBUG_MODE);
 
         // $_GET['act'] 如沒有設定的話，預設值為'main'
         if (!isset($_GET['act'])) {
