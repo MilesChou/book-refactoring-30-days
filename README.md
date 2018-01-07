@@ -41,6 +41,7 @@
 * [Day 23 - 調整程式碼風格（Coding Style）](/docs/day23.md)
 * [Day 24 - MVC 架構－－Controller & Model](/docs/day24.md)
 * [Day 25 - MVC 架構－－View](/docs/day25.md)
+* [Day 26 - 建立 Eloquent](/docs/day26.md)
 
 ## 誌謝
 
