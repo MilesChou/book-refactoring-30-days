@@ -64,7 +64,7 @@ class ExampleTest extends DuskTestCase
     public function shouldBeOkWhenSeeContactPage()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/?act=contact')
+            $browser->visit('/contact')
                 ->assertSeeLink('檢視較大的地圖');
         });
     }

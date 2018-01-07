@@ -47,7 +47,7 @@
             @if ($config['debug'])
                 <a href="admin.php">管理員頁面</a> |
             @endif
-                <a href="index.php?act=contact">聯絡我們</a> | <a
+                <a href="/contact">聯絡我們</a> | <a
                     href="index.php?act=cart&amp;op=view">查看購物車</a> | <a href="index.php">回首頁</a>
         </div>
     </div>
