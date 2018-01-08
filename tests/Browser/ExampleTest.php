@@ -109,8 +109,9 @@ class ExampleTest extends DuskTestCase
 
             $title = '野貓';
             $content = '一天要吃十個罐罐！一天要吃十個罐罐！一天要吃十個罐罐！很重要要說三次';
-
-            $browser->visit('/admin/product')
+            $browser->visit('/admin')
+                ->assertSee('商品管理')
+                ->clickLink('商品管理')
                 ->assertSee('標題')
                 ->assertSee('分類')
                 ->assertSee('成本')
@@ -123,6 +124,8 @@ class ExampleTest extends DuskTestCase
                 ->click('.mainFrameHelp > div > input[type="submit"]');
 
             $browser->driver->switchTo()->alert()->accept();
+
+            $browser->assertPathIs('/admin/product');
 
             $browser->visit('/')
                 ->assertSee($title)
