@@ -127,6 +127,9 @@ class ShopController extends Controller
                 $data = [
                     'all' => $shop->all(),
                     'all_category' => $shop->allCategory(),
+                    'act' => $request->input('act'),
+                    'opera' => $request->input('opera'),
+                    'val' => $request->input('val'),
                 ];
 
                 if (isset($_GET['id'])) {
