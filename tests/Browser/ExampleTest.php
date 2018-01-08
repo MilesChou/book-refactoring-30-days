@@ -129,4 +129,13 @@ class ExampleTest extends DuskTestCase
                 ->assertSee($content);
         });
     }
+
+    public function testShouldNotSeeSmartyTagAtAdminProductPage()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/admin.php?act=shop&op=view')
+                ->assertDontSee('<%')
+                ->assertDontSee('%>');
+        });
+    }
 }
