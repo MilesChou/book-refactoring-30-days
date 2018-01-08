@@ -110,7 +110,7 @@ class ExampleTest extends DuskTestCase
             $title = '野貓';
             $content = '一天要吃十個罐罐！一天要吃十個罐罐！一天要吃十個罐罐！很重要要說三次';
 
-            $browser->visit('/admin.php?act=shop&op=view')
+            $browser->visit('/admin/product')
                 ->assertSee('標題')
                 ->assertSee('分類')
                 ->assertSee('成本')
@@ -133,7 +133,7 @@ class ExampleTest extends DuskTestCase
     public function testShouldNotSeeSmartyTagAtAdminProductPage()
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit('/admin.php?act=shop&op=view')
+            $browser->visit('/admin/product')
                 ->assertDontSee('<%')
                 ->assertDontSee('%>');
         });
