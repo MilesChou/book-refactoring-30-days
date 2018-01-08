@@ -44,6 +44,7 @@
 * [Day 26 - 建立 Eloquent](/docs/day26.md)
 * [Day 27 - 整合 Eloquent](/docs/day27.md)
 * [Day 28 - 重構 Controller](/docs/day28.md)
+* [Day 29 - 組合應用](/docs/day29.md)
 
 ## 誌謝
 
