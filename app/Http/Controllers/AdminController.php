@@ -44,20 +44,14 @@ class AdminController extends Controller
                 switch ($_GET['op']) {
                     default:
                     case 'view':
-                        // 取得分類資料
-                        $tpl->assign('all_category', $shop->allCategory());
-                        // 取得所有資料
-                        $data = $shop->all();
-                        $tpl->assign('all', $data);
-                        // $_GET['id'] 沒有設定的話 預設值為all的第一個;
-                        if (isset($_GET['id'])) {
-                            // 查詢沒有東西的話 會設定為Null
-                            if (!$one = $shop->one($_GET['id'])) {
-                                die('查無資料');
-                            }
-                            $tpl->assign('one', $one);
-                        }
-                        $tpl->assign('admin_page', 'admin_shop.html');
+                        $id = $request->query('id');
+
+                        return view('admin.product', [
+                            'one' => $shop->one($id),
+                            'all' => $shop->all(),
+                            'all_category' => $shop->allCategory(),
+                        ]);
+
                         break;
                     // 條件查詢商品資料
                     case 'query':
