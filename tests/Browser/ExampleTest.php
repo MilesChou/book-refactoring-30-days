@@ -3,6 +3,7 @@
 namespace Tests\Browser;
 
 use App\ProductCategory;
+use Faker\Generator;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
@@ -95,6 +96,49 @@ class ExampleTest extends DuskTestCase
                 ->assertSee('管理員登入')
                 ->assertSee('帳號')
                 ->assertSee('密碼');
+        });
+    }
+
+    public function testAddProductAndSeeProduct()
+    {
+        /** @var Generator $faker */
+        $faker = $this->app->make(Generator::class);
+
+        $this->browse(function (Browser $browser) use ($faker) {
+            $image = $faker->image(base_path('storage/app/public'), 640, 480, 'cats');
+
+            $title = '野貓';
+            $content = '一天要吃十個罐罐！一天要吃十個罐罐！一天要吃十個罐罐！很重要要說三次';
+            $browser->visit('/admin')
+                ->assertSee('商品管理')
+                ->clickLink('商品管理')
+                ->assertSee('標題')
+                ->assertSee('分類')
+                ->assertSee('成本')
+                ->type('title', $title)
+                ->type('cost', 100)
+                ->type('price', 200)
+                ->type('store', 10)
+                ->attach('pic', $image)
+                ->type('content', $content)
+                ->click('.mainFrameHelp > div > input[type="submit"]');
+
+            $browser->driver->switchTo()->alert()->accept();
+
+            $browser->assertPathIs('/admin/product');
+
+            $browser->visit('/')
+                ->assertSee($title)
+                ->assertSee($content);
+        });
+    }
+
+    public function testShouldNotSeeSmartyTagAtAdminProductPage()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/admin/product')
+                ->assertDontSee('<%')
+                ->assertDontSee('%>');
         });
     }
 }

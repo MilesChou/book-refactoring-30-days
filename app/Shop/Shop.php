@@ -65,12 +65,17 @@ class Shop
      * 參數：$id為指定產品資料表的id欄位值
      *
      * @param string $id
-     * @return Product
+     * @return Product|null
      */
-    public function one($id): Product
+    public function one($id)
     {
         /** @var Product $product */
         $product = Product::find($id);
+
+        if (null === $product) {
+            return null;
+        }
+
         $product->click++;
         $product->save();
 

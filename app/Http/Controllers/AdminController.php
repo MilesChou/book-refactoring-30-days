@@ -38,27 +38,10 @@ class AdminController extends Controller
                 if (!isset($_SESSION['login']) && !DEBUG_MODE) {
                     die($shop->showAlert('請先登入！', '/admin/login'));
                 }
-                if (!isset($_GET['op'])) {
-                    $_GET['op'] = 'view';
-                }
-                switch ($_GET['op']) {
-                    default:
-                    case 'view':
-                        // 取得分類資料
-                        $tpl->assign('all_category', $shop->allCategory());
-                        // 取得所有資料
-                        $data = $shop->all();
-                        $tpl->assign('all', $data);
-                        // $_GET['id'] 沒有設定的話 預設值為all的第一個;
-                        if (isset($_GET['id'])) {
-                            // 查詢沒有東西的話 會設定為Null
-                            if (!$one = $shop->one($_GET['id'])) {
-                                die('查無資料');
-                            }
-                            $tpl->assign('one', $one);
-                        }
-                        $tpl->assign('admin_page', 'admin_shop.html');
-                        break;
+
+                $op = $request->query('op');
+
+                switch ($op) {
                     // 條件查詢商品資料
                     case 'query':
                         // 檢查傳入值是否有設定
@@ -96,15 +79,16 @@ class AdminController extends Controller
                             die($shop->showAlert('標題為必填項目！', 'BACK'));
                         }
                         $data = [];
-                        $data['title'] = $_POST['title'];
-                        $data['category'] = (isset($_POST['category'])) ? (int)$_POST['category'] : 0;
-                        $data['cost'] = (isset($_POST['cost'])) ? (int)$_POST['cost'] : 0;
-                        $data['price'] = (isset($_POST['price'])) ? (int)$_POST['price'] : 0;
-                        $data['store'] = (isset($_POST['store'])) ? (int)$_POST['store'] : 0;
-                        $data['pic'] = (isset($_FILES['pic'])) ? $_FILES['pic']['name'] : null;
-                        $data['content'] = (isset($_POST['content'])) ? $_POST['content'] : null;
-                        if ($shop->shopAction($_GET['op'], $data)) {
-                            die($shop->showAlert('商品已新增', 'admin.php?act=shop&op=view'));
+                        $data['title'] = $request->get('title');
+                        $data['category'] = (int)$request->get('category');
+                        $data['cost'] = (int)$request->get('cost');
+                        $data['price'] = (int)$request->get('price');
+                        $data['store'] = (int)$request->get('price');
+                        $data['pic'] = isset($_FILES['pic']) ? $_FILES['pic']['name'] : null;
+                        $data['content'] = $request->get('content');
+
+                        if ($shop->shopAction($op, $data)) {
+                            die($shop->showAlert('商品已新增', '/admin/product'));
                         } else {
                             die($shop->showAlert('商品新增失敗', 'BACK'));
                         }
@@ -129,7 +113,7 @@ class AdminController extends Controller
                         $data['store'] = (isset($_POST['store'])) ? (int)$_POST['store'] : 0;
                         $data['pic'] = ($_FILES['pic']['name'] != null) ? $_FILES['pic']['name'] : null;
                         $data['content'] = (isset($_POST['content'])) ? $_POST['content'] : null;
-                        if ($shop->shopAction($_GET['op'], $data, $_GET['id'])) {
+                        if ($shop->shopAction($op, $data, $_GET['id'])) {
                             die($shop->showAlert('商品已更新', 'admin.php?act=shop&op=view&id=' . $_GET['id']));
                         } else {
                             die($shop->showAlert('商品更新失敗', 'BACK'));
@@ -140,8 +124,8 @@ class AdminController extends Controller
                         if (!isset($_GET['id'])) {
                             die($shop->showAlert('資料錯誤！', 'BACK'));
                         }
-                        if ($shop->shopAction($_GET['op'], $data, $_GET['id'])) {
-                            die($shop->showAlert('商品已刪除', 'admin.php?act=shop&op=view'));
+                        if ($shop->shopAction($op, $data, $_GET['id'])) {
+                            die($shop->showAlert('商品已刪除', '/admin/product'));
                         } else {
                             die($shop->showAlert('商品刪除失敗', 'BACK'));
                         }
@@ -152,8 +136,8 @@ class AdminController extends Controller
                             die($shop->showAlert('標題為必填項目！', 'BACK'));
                         }
                         $data['title'] = $_POST['title'];
-                        if ($shop->shopAction($_GET['op'], $data, $_GET['id'])) {
-                            die($shop->showAlert('分類已新增', 'admin.php?act=shop&op=view'));
+                        if ($shop->shopAction($op, $data, $_GET['id'])) {
+                            die($shop->showAlert('分類已新增', '/admin/product'));
                         } else {
                             die($shop->showAlert('分類新增失敗', 'BACK'));
                         }
@@ -170,8 +154,8 @@ class AdminController extends Controller
                             die($shop->showAlert('查無資料！', 'BACK'));
                         }
                         $data['title'] = $_POST['title'];
-                        if ($shop->shopAction($_GET['op'], $data, $_GET['id'])) {
-                            die($shop->showAlert('分類已更新', 'admin.php?act=shop&op=view'));
+                        if ($shop->shopAction($op, $data, $_GET['id'])) {
+                            die($shop->showAlert('分類已更新', '/admin/product'));
                         } else {
                             die($shop->showAlert('分類更新失敗', 'BACK'));
                         }
@@ -181,8 +165,8 @@ class AdminController extends Controller
                         if (!isset($_GET['id'])) {
                             die($shop->showAlert('資料錯誤！', 'BACK'));
                         }
-                        if ($shop->shopAction($_GET['op'], $data, $_GET['id'])) {
-                            die($shop->showAlert('分類已刪除', 'admin.php?act=shop&op=view'));
+                        if ($shop->shopAction($op, $data, $_GET['id'])) {
+                            die($shop->showAlert('分類已刪除', '/admin/product'));
                         } else {
                             die($shop->showAlert('商品刪除失敗', 'BACK'));
                         }
@@ -263,5 +247,9 @@ class AdminController extends Controller
         $tpl->display('index.html');
 
         return ob_get_clean();
+    }
+
+    public function product()
+    {
     }
 }
