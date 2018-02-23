@@ -55,3 +55,7 @@ Teddy [再談技術債][]一文有提到，軟體品質有分「外在品質」�
 [再談技術債]: http://teddy-chen-tw.blogspot.tw/2016/08/blog-post_5.html
 [先求有，再求好]: https://github.com/MilesChou/book-intro-of-ci/blob/release/docs/day04.md
 [Day02]: /docs/day02.md
+
+* * *
+Go to next:
+[day04](./day04.md)

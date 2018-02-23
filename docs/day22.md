@@ -180,3 +180,7 @@ CI 會在程式碼改變的時候，建置（build）原始碼。它除了會檢
 [Day 19]: /docs/day19.md
 [Day 20]: /docs/day20.md
 [Day 21]: /docs/day21.md
+
+* * *
+Go to next:
+[day23](./day23.md)

@@ -195,3 +195,7 @@ class Newbie
 [Makefile]: https://github.com/104corp/guideline/blob/master/build/makefile.md
 [DevOps]: https://github.com/MilesChou/book-intro-of-ci/blob/release/docs/day01.md
 [Day 7]: /docs/day07.md
+
+* * *
+Go to next:
+[day13](./day13.md)

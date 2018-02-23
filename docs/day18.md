@@ -133,3 +133,7 @@ $ docker exec -it some-mysql mysqldump -u root -ppassword shopcart
 至於 `ENGINE` 跟編碼筆者就不確定了，但本專案單純只是 CRUD ，這兩個設定不一樣應該不會有什麼問題。
 
 這裡的調整就不列出來，程式碼詳細可以參考 [GitHub PR](https://github.com/MilesChou/book-refactoring-30-days/pull/5)
+
+* * *
+Go to next:
+[day19](./day19.md)

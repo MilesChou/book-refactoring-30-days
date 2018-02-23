@@ -110,3 +110,7 @@ defined('DEBUG_MODE') or define('DEBUG_MODE', env('APP_DEBUG'));
 今天成功把基本的驗收測試加上去了，明天我們再換跑瀏覽器的測試。
 
 程式碼可以參考 [GitHub PR](https://github.com/MilesChou/book-refactoring-30-days/pull/7)
+
+* * *
+Go to next:
+[day21](./day21.md)

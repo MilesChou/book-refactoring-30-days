@@ -127,3 +127,7 @@ script:
 [PHP-FIG]: http://www.php-fig.org/
 [The League of Extraordinary Packages]: http://thephpleague.com/
 [PHP_CodeSniffer]: https://github.com/squizlabs/PHP_CodeSniffer
+
+* * *
+Go to next:
+[day24](./day24.md)

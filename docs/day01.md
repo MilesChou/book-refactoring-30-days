@@ -64,3 +64,7 @@
 [重構：改善即有程式的設計]: http://www.books.com.tw/products/0010411649
 [臺中都會區鐵路高架捷運化計畫]: https://zh.wikipedia.org/wiki/%E8%87%BA%E4%B8%AD%E9%83%BD%E6%9C%83%E5%8D%80%E9%90%B5%E8%B7%AF%E9%AB%98%E6%9E%B6%E6%8D%B7%E9%81%8B%E5%8C%96%E8%A8%88%E7%95%AB
 
+
+* * *
+Go to next:
+[day02](./day02.md)

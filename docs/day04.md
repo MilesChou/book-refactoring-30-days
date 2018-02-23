@@ -155,3 +155,7 @@ Scrum 通常會先有 story ，然後開始切 task 再開始工作。 Story 可
 
 [Day02]: /docs/day02.md
 [Day03]: /docs/day03.md
+
+* * *
+Go to next:
+[day05](./day05.md)

@@ -167,3 +167,7 @@ $context->play(new Maltese());
 
 [Day 7]: /docs/day07.md
 [Day 9]: /docs/day09.md
+
+* * *
+Go to next:
+[day11](./day11.md)

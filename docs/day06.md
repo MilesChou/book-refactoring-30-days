@@ -75,3 +75,7 @@ echo 'world';
 [Code coverage]: https://en.wikipedia.org/wiki/Code_coverage
 [loc]: https://en.wikipedia.org/wiki/Source_lines_of_code
 [Day 4]: /docs/day04.md
+
+* * *
+Go to next:
+[day07](./day07.md)

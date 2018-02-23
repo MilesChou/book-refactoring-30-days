@@ -196,3 +196,7 @@ $data = $dataResource->getData();
 
 [Day 4]: /docs/day04.md
 [Day 7]: /docs/day07.md
+
+* * *
+Go to next:
+[day09](./day09.md)

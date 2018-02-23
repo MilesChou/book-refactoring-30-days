@@ -186,3 +186,7 @@ OK (2 tests, 2 assertions)
 今天的程式碼修改可以參考 [GitHub PR](https://github.com/MilesChou/book-refactoring-30-days/pull/3)
 
 [Composer]: https://getcomposer.org/
+
+* * *
+Go to next:
+[day17](./day17.md)

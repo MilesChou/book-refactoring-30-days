@@ -116,3 +116,7 @@ $browser->assertPathIs('/admin.php');
 如此做完的話，功能可靠度就會非常高，因為我們可以注意到，每次都會用測試來確認功能被改壞或是修好。如果有被改壞再修好的過程，開發者將可以非常確定，現在重構好的程式是正常運行的。
 
 程式碼可以參考 [GitHub PR](https://github.com/MilesChou/book-refactoring-30-days/pull/18)
+
+* * *
+Go to next:
+[day30](./day30.md)

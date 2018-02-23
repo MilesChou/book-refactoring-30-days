@@ -100,3 +100,7 @@ SRP 是個充滿爭議的原則。爭議的點是，那個「變化原因」會�
 [物件導向設計原則—SOLID]: https://ithelp.ithome.com.tw/articles/10191553
 [The Principles of OOD]: http://www.butunclebob.com/ArticleS.UncleBob.PrinciplesOfOod
 [Day 6]: /docs/day06.md
+
+* * *
+Go to next:
+[day08](./day08.md)
