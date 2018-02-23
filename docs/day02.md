@@ -100,3 +100,7 @@
 [TechnicalDebt]: https://martinfowler.com/bliki/TechnicalDebt.html
 [TechnicalDebtQuadrant]: https://martinfowler.com/bliki/TechnicalDebtQuadrant.html
 [抄捷徑的技術債，遲早要還的]: https://www.ithome.com.tw/node/71807
+
+* * *
+Go to next:
+[day03](./day03.md)

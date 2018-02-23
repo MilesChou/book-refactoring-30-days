@@ -188,3 +188,7 @@ function foo(&$bar) {
 [Laravel]: https://laravel.com/
 [使用 Slim 為 Legacy Code 重構]: https://docs.google.com/presentation/d/1k8YKDHQb6cO_zOWdo0JW3-JP7Z5TjTSl9h_n1ItYMp4/edit
 [Day 14]: /docs/day14.md
+
+* * *
+Go to next:
+[day16](./day16.md)

@@ -155,3 +155,7 @@ OK (2 tests, 11 assertions)
 到目前為止，測試的初始化已經算完成最簡單部分了。有了這些測試，後面的重構將會因此更為順利。
 
 相關的程式碼可以參考 [GitHub PR](https://github.com/MilesChou/book-refactoring-30-days/pull/8)
+
+* * *
+Go to next:
+[day22](./day22.md)

@@ -135,3 +135,7 @@ $model = new Model(new XmlResource());
 ## 參考資料
 
 * [亂談軟體設計（4）：Liskov Substitution Principle](http://teddy-chen-tw.blogspot.tw/2012/01/4.html)
+
+* * *
+Go to next:
+[day10](./day10.md)

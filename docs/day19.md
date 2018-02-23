@@ -152,3 +152,6 @@ define('DEBUG_MODE', env('APP_DEBUG'));
 [CI 工具大亂鬥]: https://github.com/MilesChou/book-intro-of-ci/blob/release/docs/day22.md
 [開源專案的好選擇 －－ Travis CI]: https://github.com/MilesChou/book-intro-of-ci/blob/release/docs/day24.md
 [為 Legacy Code 接 CI Server]: https://github.com/MilesChou/book-intro-of-ci/blob/release/docs/day28.md
+* * *
+Go to next:
+[day20](./day20.md)

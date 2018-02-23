@@ -88,3 +88,7 @@ define('DB_PASS', 'password');
 這樣做完雖然會有些時區的錯誤訊息，但是應該就會出現畫面了。
 
 今天先做到這樣，至少已經確定程式能跑在 Docker PHP 5.3 + Apache + MySQL 5.6 的環境了。但 5.3 實在很尷尬，明天就試著把程式改到 7.x 看看！
+
+* * *
+Go to next:
+[day15](./day15.md)
