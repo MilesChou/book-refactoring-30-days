@@ -83,7 +83,7 @@ Route::get('/admin.php', function () {
 Expected status code 200 but received 500.
 ```
 
-它說「預期會拿到 status code 200 但事實上拿到了 404 」，查了一下 log ，它說找不到 tpl 這個變數：
+它說「預期會拿到 status code 200 但事實上拿到了 500 」，查了一下 log ，它說找不到 tpl 這個變數：
 
 ```
 Undefined variable: tpl at /Users/miles.chou/GitHub/MilesChou/book-refactoring-30-days/admin.php:194
