@@ -45,7 +45,7 @@ interface Modem
 從介面上可以了解，它有一個職責是屬於連線（connection），另一個則是數據溝通（data communication）。 `dial` 、 `hangup` 是連線； `send` 、 `recv`
 是數據溝通。
 
-這樣會有什麼潛在風險呢？今天 ADSL 要升級成 100M ，我們會需要修改 Modem 實作，這會導致與它連線無關的 `send` 與 `recv` 也會跟著重新編譯與佈署，風險範圍也隨之擴增。重構的方法之一，是把這個介面抽離出兩個單一職責的介面：
+這樣會有什麼潛在風險呢？今天 ADSL 要升級成 100M ，我們會需要修改 Modem 實作，這會導致與它連線無關的 `send` 與 `recv` 也會跟著重新編譯與部署，風險範圍也隨之擴增。重構的方法之一，是把這個介面抽離出兩個單一職責的介面：
 
 ```php
 interface Connection
